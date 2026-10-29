@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <persistence-unit name="com_Clinica_jar_1.0PU" transaction-type="RESOURCE_LOCAL">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
-        </properties>
-        <class>mapeos.TipoMuestraEntidad</class>
-        <class>mapeos.EstudioEntidad</class>
-        <class>mapeos.ParametroEntidad</class>
-        <class>mapeos.ClienteEntidad</class>
-        <class>mapeos.DoctorEntidad</class>
-        <class>mapeos.PruebaEntidad</class>
-        <class>mapeos.PruebaEstudioEntidad</class>
-        <class>mapeos.ResultadoEntidad</class>
-        <class>mapeos.EmpresaEntidad</class>
-        <class>mapeos.UsuarioEntidad</class>
-        <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/laboratorio?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value="root"/>
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
-        </properties>    
-    </persistence-unit>
+  <persistence-unit name="ConexionJPA" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>mapeos.TipoMuestraEntidad</class>
+    <class>mapeos.EstudioEntidad</class>
+    <class>mapeos.ParametroEntidad</class>
+    <class>mapeos.ClienteEntidad</class>
+    <class>mapeos.DoctorEntidad</class>
+    <class>mapeos.PruebaEntidad</class>
+    <class>mapeos.PruebaEstudioEntidad</class>
+    <class>mapeos.ResultadoEntidad</class>
+    <class>mapeos.EmpresaEntidad</class>
+    <class>mapeos.UsuarioEntidad</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/laboratorio?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
 </persistence>
