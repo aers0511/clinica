@@ -1,3 +1,4 @@
+
 package negocio;
 
 import java.security.MessageDigest;
@@ -8,29 +9,42 @@ import java.util.Base64;
 import java.util.List;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.persistence.EntityManager;
 import mapeos.UsuarioEntidad;
-import persistencia.DAO;
+import persistencia.Conexion;
 
-// La contraseña se guarda como "sal:hash" (PBKDF2).
+// La contraseña se guarda como "sal:hash" (PBKDF2)
 public class UsuarioNegocio {
 
     private static final int ITERACIONES = 120000;
     private static final int LONGITUD_BITS = 256;
 
-    private final DAO<UsuarioEntidad> usuarioDAO = new DAO<>(UsuarioEntidad.class);
-
     public UsuarioEntidad registrarUsuario(String usuario, String contrasena) {
         if (usuario == null || usuario.isBlank() || contrasena == null || contrasena.length() < 8) {
             throw new IllegalArgumentException("Usuario obligatorio y contraseña de al menos 8 caracteres");
         }
-        if (!buscarPorUsuario(usuario).isEmpty()) {
-            throw new IllegalArgumentException("El usuario ya existe");
+        EntityManager em = Conexion.crearEntityManager();
+        try {
+            em.getTransaction().begin();
+            Long existentes = em.createQuery(
+                    "SELECT COUNT(u) FROM UsuarioEntidad u WHERE u.usuario = :usuario", Long.class)
+                    .setParameter("usuario", usuario)
+                    .getSingleResult();
+            if (existentes > 0) {
+                throw new IllegalArgumentException("El usuario ya existe");
+            }
+            UsuarioEntidad nuevo = new UsuarioEntidad();
+            nuevo.setUsuario(usuario);
+            nuevo.setContrasena(hashear(contrasena));
+            em.persist(nuevo);
+            em.getTransaction().commit();
+            return nuevo;
+        } catch (RuntimeException e) {
+            Conexion.cancelar(em);
+            throw e;
+        } finally {
+            em.close();
         }
-        UsuarioEntidad nuevo = new UsuarioEntidad();
-        nuevo.setUsuario(usuario);
-        nuevo.setContrasena(hashear(contrasena));
-        usuarioDAO.guardar(nuevo);
-        return nuevo;
     }
 
     // Devuelve el usuario si las credenciales son correctas; si no, null
@@ -38,16 +52,20 @@ public class UsuarioNegocio {
         if (usuario == null || contrasena == null) {
             return null;
         }
-        List<UsuarioEntidad> encontrados = buscarPorUsuario(usuario);
-        if (encontrados.isEmpty()) {
-            return null;
+        EntityManager em = Conexion.crearEntityManager();
+        try {
+            List<UsuarioEntidad> encontrados = em.createQuery(
+                    "SELECT u FROM UsuarioEntidad u WHERE u.usuario = :usuario", UsuarioEntidad.class)
+                    .setParameter("usuario", usuario)
+                    .getResultList();
+            if (encontrados.isEmpty()) {
+                return null;
+            }
+            UsuarioEntidad encontrado = encontrados.get(0);
+            return verificar(contrasena, encontrado.getContrasena()) ? encontrado : null;
+        } finally {
+            em.close();
         }
-        UsuarioEntidad encontrado = encontrados.get(0);
-        return verificar(contrasena, encontrado.getContrasena()) ? encontrado : null;
-    }
-
-    private List<UsuarioEntidad> buscarPorUsuario(String usuario) {
-        return usuarioDAO.consultar("SELECT u FROM UsuarioEntidad u WHERE u.usuario = ?1", usuario);
     }
 
     private String hashear(String contrasena) {
@@ -69,7 +87,7 @@ public class UsuarioNegocio {
             PBEKeySpec spec = new PBEKeySpec(contrasena.toCharArray(), sal, ITERACIONES, LONGITUD_BITS);
             return SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(spec).getEncoded();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new IllegalStateException("No se pudo procesar la contraseña", e);
+            throw new IllegalStateException("No se pudo corroborar la contraseña", e);
         }
     }
 }
