@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +28,16 @@ public class ClienteEntidad implements Serializable {
     @Column(name = "fechaNacimiento", nullable = false)
     private LocalDate fechaNacimiento;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "sexo", nullable = false)
-    private String sexo;
+    private Sexo sexo;
 
-    @Column(name = "tipoSangre")
-    private String tipoSangre;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoSangre", nullable = false)
+    private TipoSangre tipoSangre;
+
+    @Column(name = "activo", nullable = false)
+    private boolean activo = true;
 
     @OneToMany(mappedBy = "cliente")
     private List<PruebaEntidad> pruebas;
@@ -38,7 +45,7 @@ public class ClienteEntidad implements Serializable {
     public ClienteEntidad() {
     }
 
-    public ClienteEntidad(String nombreCompleto, LocalDate fechaNacimiento, String sexo, String tipoSangre) {
+    public ClienteEntidad(String nombreCompleto, LocalDate fechaNacimiento, Sexo sexo, TipoSangre tipoSangre) {
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
@@ -69,20 +76,28 @@ public class ClienteEntidad implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
-    public String getTipoSangre() {
+    public TipoSangre getTipoSangre() {
         return tipoSangre;
     }
 
-    public void setTipoSangre(String tipoSangre) {
+    public void setTipoSangre(TipoSangre tipoSangre) {
         this.tipoSangre = tipoSangre;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public List<PruebaEntidad> getPruebas() {

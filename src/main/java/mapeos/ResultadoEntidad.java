@@ -1,6 +1,7 @@
 package mapeos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tblResultados")
+@Table(name = "tblResultados",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"idPrueba", "idParametro"}))
 public class ResultadoEntidad implements Serializable {
 
     @Id
@@ -27,11 +30,21 @@ public class ResultadoEntidad implements Serializable {
     @JoinColumn(name = "idParametro", nullable = false)
     private ParametroEntidad parametro;
 
-    @Column(name = "valor", nullable = false)
-    private double valor;
+    @Column(name = "valor", nullable = false, precision = 12, scale = 4)
+    private BigDecimal valor;
 
     @Column(name = "observacion")
     private String observacion;
+
+    // Copia de lo que valía el parámetro al capturar el resultado
+    @Column(name = "rangoInicial", nullable = false, precision = 12, scale = 4)
+    private BigDecimal rangoInicial;
+
+    @Column(name = "rangoFinal", nullable = false, precision = 12, scale = 4)
+    private BigDecimal rangoFinal;
+
+    @Column(name = "unidadMedida")
+    private String unidadMedida;
 
     public ResultadoEntidad() {
     }
@@ -60,11 +73,11 @@ public class ResultadoEntidad implements Serializable {
         this.parametro = parametro;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -74,6 +87,30 @@ public class ResultadoEntidad implements Serializable {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public BigDecimal getRangoInicial() {
+        return rangoInicial;
+    }
+
+    public void setRangoInicial(BigDecimal rangoInicial) {
+        this.rangoInicial = rangoInicial;
+    }
+
+    public BigDecimal getRangoFinal() {
+        return rangoFinal;
+    }
+
+    public void setRangoFinal(BigDecimal rangoFinal) {
+        this.rangoFinal = rangoFinal;
+    }
+
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
     }
 
     @Override

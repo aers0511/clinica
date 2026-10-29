@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +24,12 @@ public class DoctorEntidad implements Serializable {
     @Column(name = "nombreCompleto", nullable = false)
     private String nombreCompleto;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "sexo", nullable = false)
-    private String sexo;
+    private Sexo sexo;
+
+    @Column(name = "activo", nullable = false)
+    private boolean activo = true;
 
     @OneToMany(mappedBy = "doctor")
     private List<PruebaEntidad> pruebas;
@@ -31,7 +37,7 @@ public class DoctorEntidad implements Serializable {
     public DoctorEntidad() {
     }
 
-    public DoctorEntidad(String nombreCompleto, String sexo) {
+    public DoctorEntidad(String nombreCompleto, Sexo sexo) {
         this.nombreCompleto = nombreCompleto;
         this.sexo = sexo;
     }
@@ -52,12 +58,20 @@ public class DoctorEntidad implements Serializable {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public List<PruebaEntidad> getPruebas() {

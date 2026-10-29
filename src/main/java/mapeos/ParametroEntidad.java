@@ -1,6 +1,7 @@
 package mapeos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,11 +34,11 @@ public class ParametroEntidad implements Serializable {
     @Column(name = "unidadMedida")
     private String unidadMedida;
 
-    @Column(name = "rangoInicial")
-    private double rangoInicial;
+    @Column(name = "rangoInicial", nullable = false, precision = 12, scale = 4)
+    private BigDecimal rangoInicial;
 
-    @Column(name = "rangoFinal")
-    private double rangoFinal;
+    @Column(name = "rangoFinal", nullable = false, precision = 12, scale = 4)
+    private BigDecimal rangoFinal;
 
     @Column(name = "edadInicial")
     private int edadInicial;
@@ -95,19 +96,19 @@ public class ParametroEntidad implements Serializable {
         this.unidadMedida = unidadMedida;
     }
 
-    public double getRangoInicial() {
+    public BigDecimal getRangoInicial() {
         return rangoInicial;
     }
 
-    public void setRangoInicial(double rangoInicial) {
+    public void setRangoInicial(BigDecimal rangoInicial) {
         this.rangoInicial = rangoInicial;
     }
 
-    public double getRangoFinal() {
+    public BigDecimal getRangoFinal() {
         return rangoFinal;
     }
 
-    public void setRangoFinal(double rangoFinal) {
+    public void setRangoFinal(BigDecimal rangoFinal) {
         this.rangoFinal = rangoFinal;
     }
 

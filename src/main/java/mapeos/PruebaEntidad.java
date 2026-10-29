@@ -3,6 +3,7 @@ package mapeos;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,9 +33,13 @@ public class PruebaEntidad implements Serializable {
     @JoinColumn(name = "idCliente", nullable = false)
     private ClienteEntidad cliente;
 
+    // Null cuando el cliente va por cuenta propia ("a quien corresponda")
     @ManyToOne
-    @JoinColumn(name = "idDoctor", nullable = false)
+    @JoinColumn(name = "idDoctor")
     private DoctorEntidad doctor;
+
+    @OneToMany(mappedBy = "prueba", cascade = CascadeType.PERSIST)
+    private List<PruebaEstudioEntidad> estudios;
 
     @OneToMany(mappedBy = "prueba")
     private List<ResultadoEntidad> resultados;
@@ -80,6 +85,14 @@ public class PruebaEntidad implements Serializable {
 
     public void setDoctor(DoctorEntidad doctor) {
         this.doctor = doctor;
+    }
+
+    public List<PruebaEstudioEntidad> getEstudios() {
+        return estudios;
+    }
+
+    public void setEstudios(List<PruebaEstudioEntidad> estudios) {
+        this.estudios = estudios;
     }
 
     public List<ResultadoEntidad> getResultados() {
