@@ -182,11 +182,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCancelarRegistroClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="JbtnRegistrarCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnRegistrarClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblNombreCliente">
               <Properties>
@@ -214,6 +220,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfApellidoMaternoCliente">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfApellidoMaternoClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblSexoCliente">
               <Properties>
@@ -234,6 +243,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="dd/mm/aaaa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNacimientoClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblSubtituloRegistroCliente">
               <Properties>
@@ -249,6 +261,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxSexoClienteActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -268,6 +283,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxSangreClienteActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

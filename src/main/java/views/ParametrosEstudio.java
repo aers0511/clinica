@@ -17,6 +17,32 @@ public class ParametrosEstudio extends javax.swing.JFrame {
      */
     public ParametrosEstudio() {
         initComponents();
+        // Al abrir directamente esta pantalla no hay un estudio seleccionado.
+        JtblParametrosEstudiosParametroEstudio.setRowHeight(23);
+    }
+
+    private int idEstudio;
+
+    public ParametrosEstudio(int id, String nombre, String muestra) {
+        this();
+        idEstudio = id;
+        JtxtfNombreParametroEstudio.setText(nombre);
+        JtxtfMuestraParametroEstudio.setText(muestra);
+        JtxtfNombreParametroEstudio.setEditable(false);
+        JtxtfMuestraParametroEstudio.setEditable(false);
+        cargarParametros();
+    }
+
+    private void cargarParametros() {
+        if (idEstudio == 0) return;
+        javax.swing.table.DefaultTableModel modelo =
+            (javax.swing.table.DefaultTableModel) JtblParametrosEstudiosParametroEstudio.getModel();
+        modelo.setRowCount(0);
+        for (mapeos.ParametroEntidad p : new negocio.CatalogoNegocio().listarParametrosPorEstudio(idEstudio)) {
+            modelo.addRow(new Object[] {p.getOrden(), p.getNombre(), p.getUnidadMedida(),
+                p.getRangoInicial() + " - " + p.getRangoFinal(),
+                p.getEdadInicial() + " - " + p.getEdadFinal()});
+        }
     }
 
     /**
@@ -118,6 +144,10 @@ public class ParametrosEstudio extends javax.swing.JFrame {
 
         JlblSubtituloIzquieroParametroEstudio.setText("Estudio");
 
+        JtxtfMuestraParametroEstudio.addActionListener(this::JtxtfMuestraParametroEstudioActionPerformed);
+
+        JtxtfNombreParametroEstudio.addActionListener(this::JtxtfNombreParametroEstudioActionPerformed);
+
         JbtnGuardarEstudioParametroEstudio.setText("Guardar Estudio");
         JbtnGuardarEstudioParametroEstudio.addActionListener(this::JbtnGuardarEstudioParametroEstudioActionPerformed);
 
@@ -175,6 +205,8 @@ public class ParametrosEstudio extends javax.swing.JFrame {
 
         JlblNombreParametroParametroEstudio.setText("Nombre:");
 
+        JtxtfNombreParametroParametroEstudio.addActionListener(this::JtxtfNombreParametroParametroEstudioActionPerformed);
+
         JlblOrdenReporteParametroEstudio.setText("Orden  en Reporte:");
 
         JtxtfOrdenReporteParametroEstudio.addActionListener(this::JtxtfOrdenReporteParametroEstudioActionPerformed);
@@ -185,17 +217,26 @@ public class ParametrosEstudio extends javax.swing.JFrame {
 
         JlblNotaDescriptivaParametroEstudio.setText("Nota descriptiva:");
 
+        JtxtfNotaDescriptivaParametroEstudio.addActionListener(this::JtxtfNotaDescriptivaParametroEstudioActionPerformed);
+
         JlblRangoInicialParametroEstudio.setText("Rango Inicial:");
+
+        JtxtfRangoInicalParametroEstudio.addActionListener(this::JtxtfRangoInicalParametroEstudioActionPerformed);
 
         JlblRangoFinalParametroEstudio.setText("Rango Final:");
 
+        JtxtfRangoFinalParametroEstudio.addActionListener(this::JtxtfRangoFinalParametroEstudioActionPerformed);
+
         JlblEdadInicialParametroEstudio.setText("Edad Inicial:");
+
+        JtxtfEdadInicialParametroEstudio.addActionListener(this::JtxtfEdadInicialParametroEstudioActionPerformed);
 
         JlblEdadFinalParametroEstudio.setText("Edad Final:");
 
         JtxtfEdadFinalParametroEstudio.addActionListener(this::JtxtfEdadFinalParametroEstudioActionPerformed);
 
         JbtnAgregarParametrosParametroEstudio.setText("Agregar Parametros");
+        JbtnAgregarParametrosParametroEstudio.addActionListener(this::JbtnAgregarParametrosParametroEstudioActionPerformed);
 
         JtblParametrosEstudiosParametroEstudio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -333,11 +374,18 @@ public class ParametrosEstudio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnGuardarEstudioParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnGuardarEstudioParametroEstudioActionPerformed
-        // TODO add your handling code here:
+        if (idEstudio == 0 || JtblParametrosEstudiosParametroEstudio.getRowCount() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Agregue al menos un parametro al estudio");
+            return;
+        }
+        new EstudiosRegistrados().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnGuardarEstudioParametroEstudioActionPerformed
 
     private void JbtnCancelarEstudioParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCancelarEstudioParametroEstudioActionPerformed
-        // TODO add your handling code here:
+        // Los parametros agregados ya se guardaron en la base de datos.
+        new EstudiosRegistrados().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnCancelarEstudioParametroEstudioActionPerformed
 
     private void JtxtfOrdenReporteParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfOrdenReporteParametroEstudioActionPerformed
@@ -351,6 +399,60 @@ public class ParametrosEstudio extends javax.swing.JFrame {
     private void JtxtfEdadFinalParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfEdadFinalParametroEstudioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtxtfEdadFinalParametroEstudioActionPerformed
+
+    private void JtxtfNombreParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNombreParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNombreParametroEstudioActionPerformed
+
+    private void JtxtfMuestraParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfMuestraParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfMuestraParametroEstudioActionPerformed
+
+    private void JtxtfNombreParametroParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNombreParametroParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNombreParametroParametroEstudioActionPerformed
+
+    private void JtxtfNotaDescriptivaParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNotaDescriptivaParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNotaDescriptivaParametroEstudioActionPerformed
+
+    private void JtxtfRangoInicalParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfRangoInicalParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfRangoInicalParametroEstudioActionPerformed
+
+    private void JtxtfRangoFinalParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfRangoFinalParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfRangoFinalParametroEstudioActionPerformed
+
+    private void JtxtfEdadInicialParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfEdadInicialParametroEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfEdadInicialParametroEstudioActionPerformed
+
+    private void JbtnAgregarParametrosParametroEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnAgregarParametrosParametroEstudioActionPerformed
+        try {
+            if (idEstudio == 0) throw new IllegalArgumentException("Abra esta pantalla desde Nuevo Estudio");
+            new negocio.CatalogoNegocio().registrarParametro(
+                JtxtfNombreParametroParametroEstudio.getText().trim(),
+                Integer.parseInt(JtxtfOrdenReporteParametroEstudio.getText().trim()),
+                JtxtfNotaDescriptivaParametroEstudio.getText().trim(),
+                JtxtfUnidadMedidaParametroEstudio.getText().trim(),
+                new java.math.BigDecimal(JtxtfRangoInicalParametroEstudio.getText().trim()),
+                new java.math.BigDecimal(JtxtfRangoFinalParametroEstudio.getText().trim()),
+                Integer.parseInt(JtxtfEdadInicialParametroEstudio.getText().trim()),
+                Integer.parseInt(JtxtfEdadFinalParametroEstudio.getText().trim()), idEstudio);
+            cargarParametros();
+            JtxtfNombreParametroParametroEstudio.setText("");
+            JtxtfOrdenReporteParametroEstudio.setText("");
+            JtxtfNotaDescriptivaParametroEstudio.setText("");
+            JtxtfUnidadMedidaParametroEstudio.setText("");
+            JtxtfRangoInicalParametroEstudio.setText("");
+            JtxtfRangoFinalParametroEstudio.setText("");
+            JtxtfEdadInicialParametroEstudio.setText("");
+            JtxtfEdadFinalParametroEstudio.setText("");
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al agregar parametro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnAgregarParametrosParametroEstudioActionPerformed
 
     /**
      * @param args the command line arguments

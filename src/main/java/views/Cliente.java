@@ -61,8 +61,10 @@ public class Cliente extends javax.swing.JFrame {
         JpnlInferiorCliente.setBackground(new java.awt.Color(173, 173, 173));
 
         JbtnCancelarRegistroCliente.setText("Cancelar");
+        JbtnCancelarRegistroCliente.addActionListener(this::JbtnCancelarRegistroClienteActionPerformed);
 
         JbtnRegistrarCliente.setText("Registrar");
+        JbtnRegistrarCliente.addActionListener(this::JbtnRegistrarClienteActionPerformed);
 
         JlblNombreCliente.setText("Nombre:");
 
@@ -74,6 +76,8 @@ public class Cliente extends javax.swing.JFrame {
 
         JlblApellidoMaternoCliente.setText("Apellido Materno:");
 
+        JtxtfApellidoMaternoCliente.addActionListener(this::JtxtfApellidoMaternoClienteActionPerformed);
+
         JlblSexoCliente.setText("Sexo:");
 
         JlblSangreCliente.setText("Tipo de Sangre:");
@@ -81,12 +85,15 @@ public class Cliente extends javax.swing.JFrame {
         JlblNacimientoCliente.setText("Fecha de nacimiento:");
 
         JtxtfNacimientoCliente.setText("dd/mm/aaaa");
+        JtxtfNacimientoCliente.addActionListener(this::JtxtfNacimientoClienteActionPerformed);
 
         JlblSubtituloRegistroCliente.setText("Registro Clientes:");
 
         JcmbxSexoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        JcmbxSexoCliente.addActionListener(this::JcmbxSexoClienteActionPerformed);
 
         JcmbxSangreCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A- ", "B+ ", "B- ", "AB+ ", "AB- ", "O+  ", "O-" }));
+        JcmbxSangreCliente.addActionListener(this::JcmbxSangreClienteActionPerformed);
 
         javax.swing.GroupLayout JpnlInferiorClienteLayout = new javax.swing.GroupLayout(JpnlInferiorCliente);
         JpnlInferiorCliente.setLayout(JpnlInferiorClienteLayout);
@@ -206,6 +213,55 @@ public class Cliente extends javax.swing.JFrame {
     private void JtxtfApellidoPaternoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfApellidoPaternoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtxtfApellidoPaternoClienteActionPerformed
+
+    private void JtxtfApellidoMaternoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfApellidoMaternoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfApellidoMaternoClienteActionPerformed
+
+    private void JcmbxSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxSexoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxSexoClienteActionPerformed
+
+    private void JcmbxSangreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxSangreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxSangreClienteActionPerformed
+
+    private void JtxtfNacimientoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNacimientoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNacimientoClienteActionPerformed
+
+    private void JbtnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnRegistrarClienteActionPerformed
+        try {
+            String nombre = (JtxtfNombresCliente.getText().trim() + " "
+                + JtxtfApellidoPaternoCliente.getText().trim() + " "
+                + JtxtfApellidoMaternoCliente.getText().trim()).trim();
+            if (JtxtfNombresCliente.getText().isBlank() || JtxtfApellidoPaternoCliente.getText().isBlank()) {
+                throw new IllegalArgumentException("Nombre y apellido paterno son obligatorios");
+            }
+            java.time.LocalDate fecha = java.time.LocalDate.parse(
+                JtxtfNacimientoCliente.getText().trim(),
+                java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+                    .withResolverStyle(java.time.format.ResolverStyle.STRICT));
+            mapeos.Sexo sexo = JcmbxSexoCliente.getSelectedIndex() == 0
+                ? mapeos.Sexo.MASCULINO : mapeos.Sexo.FEMENINO;
+            String sangre = String.valueOf(JcmbxSangreCliente.getSelectedItem()).trim();
+            mapeos.TipoSangre tipo = null;
+            for (mapeos.TipoSangre item : mapeos.TipoSangre.values()) {
+                if (item.toString().equals(sangre)) tipo = item;
+            }
+            new negocio.SolicitudNegocio().registrarCliente(nombre, fecha, sexo, tipo);
+            javax.swing.JOptionPane.showMessageDialog(this, "Cliente registrado");
+            new MenuClinica().setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo registrar: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnRegistrarClienteActionPerformed
+
+    private void JbtnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCancelarRegistroClienteActionPerformed
+        new MenuClinica().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnCancelarRegistroClienteActionPerformed
 
     /**
      * @param args the command line arguments

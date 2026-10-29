@@ -156,11 +156,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo Estudio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnNuevoEstudioEstudiosRegistradosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JbtnVolverMenuEstudiosRegistrados">
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver al menu"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuEstudiosRegistradosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

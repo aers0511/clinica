@@ -17,6 +17,7 @@ public class InicioSesion extends javax.swing.JFrame {
      */
     public InicioSesion() {
         initComponents();
+        JPwrdContraseñaInicioSesion.setText("");
     }
 
     /**
@@ -136,19 +137,31 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JtxtFUsuarioInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtFUsuarioInicioSesionActionPerformed
-        // TODO add your handling code here:
+        JPwrdContraseñaInicioSesion.requestFocusInWindow();
     }//GEN-LAST:event_JtxtFUsuarioInicioSesionActionPerformed
 
     private void JPwrdContraseñaInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPwrdContraseñaInicioSesionActionPerformed
-        // TODO add your handling code here:
+        JbtnIngresarInicioSesion.doClick();
     }//GEN-LAST:event_JPwrdContraseñaInicioSesionActionPerformed
 
     private void JlblOlvContraseñaInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlblOlvContraseñaInicioSesionMouseClicked
-        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(this,
+         "La recuperacion no esta implementada en el proyecto. Contacte al administrador.");
     }//GEN-LAST:event_JlblOlvContraseñaInicioSesionMouseClicked
 
     private void JbtnIngresarInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnIngresarInicioSesionActionPerformed
-        // TODO add your handling code here:
+        try {
+            String usuario = JtxtFUsuarioInicioSesion.getText().trim();
+            String contrasena = new String(JPwrdContraseñaInicioSesion.getPassword());
+            if (new negocio.UsuarioNegocio().iniciarSesion(usuario, contrasena) == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrectos");
+                return;
+            }
+            new MenuClinica().setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo iniciar sesion: " + e.getMessage());
+        }
     }//GEN-LAST:event_JbtnIngresarInicioSesionActionPerformed
 
     /**

@@ -17,6 +17,63 @@ public class NuevaSolicitud extends javax.swing.JFrame {
      */
     public NuevaSolicitud() {
         initComponents();
+        JtxtfFolioNuevaSolicitud.setEditable(false);
+        JtxtfFechaHoraNuevaSolicitud.setEditable(false);
+        JtxtfFechaHoraNuevaSolicitud.setText(java.time.LocalDateTime.now().toString());
+        cargarDatos();
+        JchkbxEstudiosSolicitarNuevaSolicitud.setText("Seleccionar estudios");
+    }
+
+    private java.util.List<mapeos.ClienteEntidad> clientes = new java.util.ArrayList<>();
+    private java.util.List<mapeos.DoctorEntidad> doctores = new java.util.ArrayList<>();
+    private java.util.List<mapeos.EstudioEntidad> estudios = new java.util.ArrayList<>();
+    private java.util.List<Integer> estudiosSeleccionados = new java.util.ArrayList<>();
+
+    private void cargarDatos() {
+        try {
+            negocio.SolicitudNegocio solicitud = new negocio.SolicitudNegocio();
+            clientes = solicitud.listarClientes();
+            doctores = solicitud.listarDoctores();
+            estudios = new negocio.CatalogoNegocio().listarEstudios();
+            JcmbxClienteNuevaSolicitud.removeAllItems();
+            JcmbxDoctorNuevaSolicitud.removeAllItems();
+            for (mapeos.ClienteEntidad c : clientes) JcmbxClienteNuevaSolicitud.addItem(c.getNombreCompleto());
+            JcmbxDoctorNuevaSolicitud.addItem("A quien corresponda");
+            for (mapeos.DoctorEntidad d : doctores) JcmbxDoctorNuevaSolicitud.addItem(d.getNombreCompleto());
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+        }
+    }
+
+    private void seleccionarEstudios() {
+        try {
+            estudios = new negocio.CatalogoNegocio().listarEstudios();
+            if (estudios.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Primero registre estudios y sus parametros");
+                return;
+            }
+            javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.GridLayout(0, 1));
+            java.util.List<javax.swing.JCheckBox> opciones = new java.util.ArrayList<>();
+            for (mapeos.EstudioEntidad estudio : estudios) {
+                javax.swing.JCheckBox opcion = new javax.swing.JCheckBox(estudio.getNombre());
+                opcion.setSelected(estudiosSeleccionados.contains(estudio.getId()));
+                opciones.add(opcion);
+                panel.add(opcion);
+            }
+            int respuesta = javax.swing.JOptionPane.showConfirmDialog(this,
+                    new javax.swing.JScrollPane(panel), "Estudios a solicitar",
+                    javax.swing.JOptionPane.OK_CANCEL_OPTION);
+            if (respuesta == javax.swing.JOptionPane.OK_OPTION) {
+                estudiosSeleccionados.clear();
+                for (int i = 0; i < estudios.size(); i++) {
+                    if (opciones.get(i).isSelected()) estudiosSeleccionados.add(estudios.get(i).getId());
+                }
+            }
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al elegir estudios: " + e.getMessage());
+        }
+        JchkbxEstudiosSolicitarNuevaSolicitud.setText("Estudios elegidos: " + estudiosSeleccionados.size());
+        JchkbxEstudiosSolicitarNuevaSolicitud.setSelected(!estudiosSeleccionados.isEmpty());
     }
 
     /**
@@ -86,8 +143,14 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JbtnCargarDatosNuevaSolicitud.addActionListener(this::JbtnCargarDatosNuevaSolicitudActionPerformed);
 
         JbtnVolverMenuNuevaEstudio.setText("Volver al menu");
+        JbtnVolverMenuNuevaEstudio.addActionListener(this::JbtnVolverMenuNuevaEstudioActionPerformed);
 
         JcmbxDoctorNuevaSolicitud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcmbxDoctorNuevaSolicitud.addActionListener(this::JcmbxDoctorNuevaSolicitudActionPerformed);
+
+        JtxtfFechaHoraNuevaSolicitud.addActionListener(this::JtxtfFechaHoraNuevaSolicitudActionPerformed);
+
+        JtxtfFolioNuevaSolicitud.addActionListener(this::JtxtfFolioNuevaSolicitudActionPerformed);
 
         JlblFolioNuevaSolicitud.setText("Folio:");
 
@@ -100,8 +163,10 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JlblDoctorNuevaSolicitud.setText("Doctor:");
 
         JcmbxClienteNuevaSolicitud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcmbxClienteNuevaSolicitud.addActionListener(this::JcmbxClienteNuevaSolicitudActionPerformed);
 
         JchkbxEstudiosSolicitarNuevaSolicitud.setText("Orina");
+        JchkbxEstudiosSolicitarNuevaSolicitud.addActionListener(this::JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed);
 
         JlblEstudioSolicitarNuevaSolicitud.setText("Estudios a solcitar:");
 
@@ -213,8 +278,48 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnCargarDatosNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosNuevaSolicitudActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (JcmbxClienteNuevaSolicitud.getSelectedIndex() < 0)
+                throw new IllegalArgumentException("Seleccione un cliente");
+            mapeos.ClienteEntidad c = clientes.get(JcmbxClienteNuevaSolicitud.getSelectedIndex());
+            int indiceDoctor = JcmbxDoctorNuevaSolicitud.getSelectedIndex();
+            Integer doctor = indiceDoctor < 1 ? null : doctores.get(indiceDoctor - 1).getId();
+            mapeos.PruebaEntidad prueba = new negocio.SolicitudNegocio().registrarPrueba(
+                c.getId(), doctor, estudiosSeleccionados);
+            JtxtfFolioNuevaSolicitud.setText(prueba.getFolio());
+            JtxtfFechaHoraNuevaSolicitud.setText(prueba.getFechaHora().toString());
+            javax.swing.JOptionPane.showMessageDialog(this, "Solicitud guardada. Folio: " + prueba.getFolio());
+            new SolicitudesRegistradas().setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo guardar: " + e.getMessage());
+        }
     }//GEN-LAST:event_JbtnCargarDatosNuevaSolicitudActionPerformed
+
+    private void JtxtfFolioNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfFolioNuevaSolicitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfFolioNuevaSolicitudActionPerformed
+
+    private void JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed
+        seleccionarEstudios();
+    }//GEN-LAST:event_JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed
+
+    private void JtxtfFechaHoraNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfFechaHoraNuevaSolicitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfFechaHoraNuevaSolicitudActionPerformed
+
+    private void JcmbxClienteNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxClienteNuevaSolicitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxClienteNuevaSolicitudActionPerformed
+
+    private void JcmbxDoctorNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxDoctorNuevaSolicitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxDoctorNuevaSolicitudActionPerformed
+
+    private void JbtnVolverMenuNuevaEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnVolverMenuNuevaEstudioActionPerformed
+        new SolicitudesRegistradas().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnVolverMenuNuevaEstudioActionPerformed
 
     /**
      * @param args the command line arguments

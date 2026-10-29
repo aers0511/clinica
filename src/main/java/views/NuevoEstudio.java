@@ -17,6 +17,21 @@ public class NuevoEstudio extends javax.swing.JFrame {
      */
     public NuevoEstudio() {
         initComponents();
+        cargarTipos();
+    }
+
+    private java.util.List<mapeos.TipoMuestraEntidad> tipos = new java.util.ArrayList<>();
+
+    private void cargarTipos() {
+        try {
+            tipos = new negocio.CatalogoNegocio().listarTiposMuestra();
+            JcmbxTipoMuestraNuevoEstudio.removeAllItems();
+            for (mapeos.TipoMuestraEntidad tipo : tipos) {
+                JcmbxTipoMuestraNuevoEstudio.addItem(tipo.getNombre());
+            }
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al cargar muestras: " + e.getMessage());
+        }
     }
 
     /**
@@ -79,10 +94,17 @@ public class NuevoEstudio extends javax.swing.JFrame {
         JpnlInferiorNuevoEstudio.setBackground(new java.awt.Color(173, 173, 173));
 
         JbtnCargarDatosNuevoEstudio.setText("Cargar Datos");
+        JbtnCargarDatosNuevoEstudio.addActionListener(this::JbtnCargarDatosNuevoEstudioActionPerformed);
 
         JbtnVolverMenuNuevoEstudio.setText("Volver al menu");
+        JbtnVolverMenuNuevoEstudio.addActionListener(this::JbtnVolverMenuNuevoEstudioActionPerformed);
 
         JcmbxTipoMuestraNuevoEstudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcmbxTipoMuestraNuevoEstudio.addActionListener(this::JcmbxTipoMuestraNuevoEstudioActionPerformed);
+
+        JtxtfNombreEstudioNuevoEstudio.addActionListener(this::JtxtfNombreEstudioNuevoEstudioActionPerformed);
+
+        JtxtfNotaDescriptivaNuevoEstudio.addActionListener(this::JtxtfNotaDescriptivaNuevoEstudioActionPerformed);
 
         JlblTipoMuestraNuevoEstudio.setText("Tipo Muestra:");
 
@@ -175,6 +197,47 @@ public class NuevoEstudio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JcmbxTipoMuestraNuevoEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxTipoMuestraNuevoEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxTipoMuestraNuevoEstudioActionPerformed
+
+    private void JtxtfNombreEstudioNuevoEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNombreEstudioNuevoEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNombreEstudioNuevoEstudioActionPerformed
+
+    private void JtxtfNotaDescriptivaNuevoEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfNotaDescriptivaNuevoEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfNotaDescriptivaNuevoEstudioActionPerformed
+
+    private void JbtnCargarDatosNuevoEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosNuevoEstudioActionPerformed
+        try {
+            negocio.CatalogoNegocio catalogo = new negocio.CatalogoNegocio();
+            String nombre = JtxtfNombreEstudioNuevoEstudio.getText().trim();
+            String nota = JtxtfNotaDescriptivaNuevoEstudio.getText().trim();
+            int idTipo;
+            if (tipos.isEmpty()) {
+                String nuevo = javax.swing.JOptionPane.showInputDialog(this, "Nombre del tipo de muestra:");
+                if (nuevo == null) return;
+                idTipo = catalogo.registrarTipoMuestra(nuevo.trim()).getId();
+            } else {
+                idTipo = tipos.get(JcmbxTipoMuestraNuevoEstudio.getSelectedIndex()).getId();
+            }
+            mapeos.EstudioEntidad estudio = catalogo.registrarEstudio(nombre, nota, idTipo);
+            new ParametrosEstudio(estudio.getId(), estudio.getNombre(),
+                tipos.isEmpty() ? catalogo.listarTiposMuestra().stream()
+                    .filter(t -> t.getId() == idTipo).findFirst().get().getNombre()
+                    : String.valueOf(JcmbxTipoMuestraNuevoEstudio.getSelectedItem())).setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo registrar el estudio: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnCargarDatosNuevoEstudioActionPerformed
+
+    private void JbtnVolverMenuNuevoEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnVolverMenuNuevoEstudioActionPerformed
+        new EstudiosRegistrados().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnVolverMenuNuevoEstudioActionPerformed
 
     /**
      * @param args the command line arguments

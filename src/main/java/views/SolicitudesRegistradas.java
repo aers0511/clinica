@@ -17,6 +17,38 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
      */
     public SolicitudesRegistradas() {
         initComponents();
+        cargarSolicitudes();
+        JtblSolicitudesRegistradas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseClicked(java.awt.event.MouseEvent e) {
+                int fila = JtblSolicitudesRegistradas.rowAtPoint(e.getPoint());
+                int columna = JtblSolicitudesRegistradas.columnAtPoint(e.getPoint());
+                if (fila >= 0 && columna == 5) {
+                    String folio = String.valueOf(JtblSolicitudesRegistradas.getValueAt(fila, 0));
+                    new IngresarResultados(folio).setVisible(true);
+                    dispose();
+                }
+            }
+        });
+    }
+
+    private void cargarSolicitudes() {
+        try {
+            javax.swing.table.DefaultTableModel modelo =
+                (javax.swing.table.DefaultTableModel) JtblSolicitudesRegistradas.getModel();
+            modelo.setRowCount(0);
+            negocio.SolicitudNegocio solicitud = new negocio.SolicitudNegocio();
+            negocio.ResultadoNegocio resultado = new negocio.ResultadoNegocio();
+            for (mapeos.PruebaEntidad p : solicitud.listarTodasPruebas()) {
+                String estado = resultado.parametrosFaltantes(p.getId()).isEmpty()
+                    ? "Completa" : "Pendiente";
+                modelo.addRow(new Object[] {p.getFolio(), p.getFechaHora(),
+                    p.getCliente().getNombreCompleto(),
+                    p.getDoctor() == null ? "A quien corresponda" : p.getDoctor().getNombreCompleto(),
+                    estado, "Capturar"});
+            }
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al consultar solicitudes: " + e.getMessage());
+        }
     }
 
     /**
@@ -146,11 +178,13 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnNuevoEstudioSolicitudesRegistradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnNuevoEstudioSolicitudesRegistradasActionPerformed
-        // TODO add your handling code here:
+        new NuevaSolicitud().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnNuevoEstudioSolicitudesRegistradasActionPerformed
 
     private void JbtnVolverMenuSolicitudesRegistradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnVolverMenuSolicitudesRegistradasActionPerformed
-        // TODO add your handling code here:
+        new MenuClinica().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnVolverMenuSolicitudesRegistradasActionPerformed
 
     /**

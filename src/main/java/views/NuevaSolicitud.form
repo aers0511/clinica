@@ -149,6 +149,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver al menu"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuNuevaEstudioActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="JpnlRequisitosNuevaSolicitud">
 
@@ -237,13 +240,22 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxDoctorNuevaSolicitudActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfFechaHoraNuevaSolicitud">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfFechaHoraNuevaSolicitudActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfFolioNuevaSolicitud">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfFolioNuevaSolicitudActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblFolioNuevaSolicitud">
               <Properties>
@@ -281,6 +293,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxClienteNuevaSolicitudActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -289,6 +304,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Orina"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblEstudioSolicitarNuevaSolicitud">
               <Properties>

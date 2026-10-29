@@ -17,6 +17,49 @@ public class IngresarResultados extends javax.swing.JFrame {
      */
     public IngresarResultados() {
         initComponents();
+        JtxtClienteIngresarResultados.setEditable(false);
+        JtxtfEdadIngresarResultados.setEditable(false);
+        JtblParametrosIngresarResultados.setRowHeight(24);
+        getRootPane().registerKeyboardAction(e -> {
+            new MenuClinica().setVisible(true);
+            dispose();
+        }, javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0),
+        javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+    }
+
+    private mapeos.PruebaEntidad pruebaActual;
+    private java.util.List<mapeos.ParametroEntidad> parametrosActuales = new java.util.ArrayList<>();
+
+    public IngresarResultados(String folio) {
+        this();
+        JtxtfPruebaIngresarResultados.setText(folio);
+        cargarPrueba();
+    }
+
+    private void cargarPrueba() {
+        try {
+            pruebaActual = new negocio.SolicitudNegocio().buscarPrueba(
+                JtxtfPruebaIngresarResultados.getText().trim());
+            JtxtClienteIngresarResultados.setText(pruebaActual.getCliente().getNombreCompleto());
+            int edad = java.time.Period.between(pruebaActual.getCliente().getFechaNacimiento(),
+                pruebaActual.getFechaHora().toLocalDate()).getYears();
+            JtxtfEdadIngresarResultados.setText(String.valueOf(edad));
+            parametrosActuales = new negocio.ResultadoNegocio().parametrosFaltantes(pruebaActual.getId());
+            javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
+                new String[] {"Parametro", "Unidad", "Rango por edad", "Resultado", "Observacion"}, 0) {
+                @Override public boolean isCellEditable(int fila, int columna) { return columna >= 3; }
+            };
+            for (mapeos.ParametroEntidad p : parametrosActuales) {
+                modelo.addRow(new Object[] {p.getNombre(), p.getUnidadMedida(),
+                    p.getRangoInicial() + " - " + p.getRangoFinal(), "", ""});
+            }
+            JtblParametrosIngresarResultados.setModel(modelo);
+            if (parametrosActuales.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Esta prueba ya tiene todos sus resultados");
+            }
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo cargar la prueba: " + e.getMessage());
+        }
     }
 
     /**
@@ -81,6 +124,7 @@ public class IngresarResultados extends javax.swing.JFrame {
         JpnlInferiorIngresarResultados.setBackground(new java.awt.Color(173, 173, 173));
 
         JbtnCargarDatosIngresarResultados.setText("Cargar Datos");
+        JbtnCargarDatosIngresarResultados.addActionListener(this::JbtnCargarDatosIngresarResultadosActionPerformed);
 
         JpnlSuperiorDentroIngresarResultados.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -91,6 +135,10 @@ public class IngresarResultados extends javax.swing.JFrame {
         JlblEdadIngresarResultados.setText("Edad:");
 
         JtxtfPruebaIngresarResultados.addActionListener(this::JtxtfPruebaIngresarResultadosActionPerformed);
+
+        JtxtClienteIngresarResultados.addActionListener(this::JtxtClienteIngresarResultadosActionPerformed);
+
+        JtxtfEdadIngresarResultados.addActionListener(this::JtxtfEdadIngresarResultadosActionPerformed);
 
         javax.swing.GroupLayout JpnlSuperiorDentroIngresarResultadosLayout = new javax.swing.GroupLayout(JpnlSuperiorDentroIngresarResultados);
         JpnlSuperiorDentroIngresarResultados.setLayout(JpnlSuperiorDentroIngresarResultadosLayout);
@@ -208,8 +256,44 @@ public class IngresarResultados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JtxtfPruebaIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfPruebaIngresarResultadosActionPerformed
-        // TODO add your handling code here:
+        cargarPrueba();
     }//GEN-LAST:event_JtxtfPruebaIngresarResultadosActionPerformed
+
+    private void JtxtClienteIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtClienteIngresarResultadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtClienteIngresarResultadosActionPerformed
+
+    private void JtxtfEdadIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfEdadIngresarResultadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfEdadIngresarResultadosActionPerformed
+
+    private void JbtnCargarDatosIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosIngresarResultadosActionPerformed
+        try {
+            if (pruebaActual == null) {
+                cargarPrueba();
+                if (pruebaActual == null) return;
+            }
+            if (JtblParametrosIngresarResultados.isEditing())
+                JtblParametrosIngresarResultados.getCellEditor().stopCellEditing();
+            javax.swing.table.TableModel tabla = JtblParametrosIngresarResultados.getModel();
+            // Validar todos los valores antes de guardar.
+            java.util.List<java.math.BigDecimal> valores = new java.util.ArrayList<>();
+            for (int i = 0; i < parametrosActuales.size(); i++) {
+                String valor = String.valueOf(tabla.getValueAt(i, 3)).trim();
+                valores.add(new java.math.BigDecimal(valor));
+            }
+            negocio.ResultadoNegocio negocio = new negocio.ResultadoNegocio();
+            for (int i = 0; i < parametrosActuales.size(); i++) {
+                Object nota = tabla.getValueAt(i, 4);
+                negocio.registrarResultado(pruebaActual.getId(), parametrosActuales.get(i).getId(),
+                    valores.get(i), nota == null ? "" : String.valueOf(nota));
+            }
+            javax.swing.JOptionPane.showMessageDialog(this, "Resultados guardados");
+            cargarPrueba();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al guardar resultados: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnCargarDatosIngresarResultadosActionPerformed
 
     /**
      * @param args the command line arguments

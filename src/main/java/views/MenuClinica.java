@@ -179,35 +179,43 @@ public class MenuClinica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnCargarDatosMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(this,
+          "Use Clientes, Doctores, Estudios y Solicitudes para registrar los datos.");
     }//GEN-LAST:event_JbtnCargarDatosMenuClinicaActionPerformed
 
     private void JbtnCerrarSesionMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCerrarSesionMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new InicioSesion().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnCerrarSesionMenuClinicaActionPerformed
 
     private void JbtnSolicitudesMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnSolicitudesMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new SolicitudesRegistradas().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnSolicitudesMenuClinicaActionPerformed
 
     private void JbtnCatalogEstudiosMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCatalogEstudiosMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new EstudiosRegistrados().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnCatalogEstudiosMenuClinicaActionPerformed
 
     private void JbtnClientesMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnClientesMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new Cliente().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnClientesMenuClinicaActionPerformed
 
     private void JbtnDoctoresMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnDoctoresMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new Doctor().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnDoctoresMenuClinicaActionPerformed
 
     private void JbtnIngresarResultadosMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnIngresarResultadosMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new IngresarResultados().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnIngresarResultadosMenuClinicaActionPerformed
 
     private void JbtnPDFMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnPDFMenuClinicaActionPerformed
-        // TODO add your handling code here:
+        new PDF().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JbtnPDFMenuClinicaActionPerformed
 
     /**

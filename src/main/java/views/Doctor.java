@@ -57,8 +57,10 @@ public class Doctor extends javax.swing.JFrame {
         JpnlInferiorDoctor.setBackground(new java.awt.Color(173, 173, 173));
 
         JbtnCancelarRegistroDoctor.setText("Cancelar");
+        JbtnCancelarRegistroDoctor.addActionListener(this::JbtnCancelarRegistroDoctorActionPerformed);
 
         JbtnRegistrarDoctor.setText("Registrar");
+        JbtnRegistrarDoctor.addActionListener(this::JbtnRegistrarDoctorActionPerformed);
 
         JlblNombreDoctor.setText("Nombre:");
 
@@ -70,11 +72,14 @@ public class Doctor extends javax.swing.JFrame {
 
         JlblApellidoMaternoDoctor.setText("Apellido Materno:");
 
+        JtxtfApellidoMaternoDoctor.addActionListener(this::JtxtfApellidoMaternoDoctorActionPerformed);
+
         JlblSexoDoctor.setText("Sexo:");
 
         JlblSubtituloDoctor.setText("Registro Doctor:");
 
         JcmbxSexoDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        JcmbxSexoDoctor.addActionListener(this::JcmbxSexoDoctorActionPerformed);
 
         javax.swing.GroupLayout JpnlInferiorDoctorLayout = new javax.swing.GroupLayout(JpnlInferiorDoctor);
         JpnlInferiorDoctor.setLayout(JpnlInferiorDoctorLayout);
@@ -182,6 +187,38 @@ public class Doctor extends javax.swing.JFrame {
     private void JtxtfApellidoPaternoDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfApellidoPaternoDoctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtxtfApellidoPaternoDoctorActionPerformed
+
+    private void JtxtfApellidoMaternoDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfApellidoMaternoDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtfApellidoMaternoDoctorActionPerformed
+
+    private void JcmbxSexoDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxSexoDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcmbxSexoDoctorActionPerformed
+
+    private void JbtnRegistrarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnRegistrarDoctorActionPerformed
+        try {
+            String nombre = (JtxtfNombreDoctor.getText().trim() + " "
+                + JtxtfApellidoPaternoDoctor.getText().trim() + " "
+                + JtxtfApellidoMaternoDoctor.getText().trim()).trim();
+            if (JtxtfNombreDoctor.getText().isBlank() || JtxtfApellidoPaternoDoctor.getText().isBlank()) {
+                throw new IllegalArgumentException("Nombre y apellido paterno son obligatorios");
+            }
+            mapeos.Sexo sexo = JcmbxSexoDoctor.getSelectedIndex() == 0
+                ? mapeos.Sexo.MASCULINO : mapeos.Sexo.FEMENINO;
+            new negocio.SolicitudNegocio().registrarDoctor(nombre, sexo);
+            javax.swing.JOptionPane.showMessageDialog(this, "Doctor registrado");
+            new MenuClinica().setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo registrar: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnRegistrarDoctorActionPerformed
+
+    private void JbtnCancelarRegistroDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCancelarRegistroDoctorActionPerformed
+        new MenuClinica().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnCancelarRegistroDoctorActionPerformed
 
     /**
      * @param args the command line arguments

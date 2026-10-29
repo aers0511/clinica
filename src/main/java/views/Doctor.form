@@ -170,11 +170,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCancelarRegistroDoctorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="JbtnRegistrarDoctor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnRegistrarDoctorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblNombreDoctor">
               <Properties>
@@ -202,6 +208,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfApellidoMaternoDoctor">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfApellidoMaternoDoctorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblSexoDoctor">
               <Properties>
@@ -222,6 +231,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxSexoDoctorActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

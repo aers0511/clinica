@@ -133,6 +133,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cargar Datos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCargarDatosIngresarResultadosActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="JpnlSuperiorDentroIngresarResultados">
           <Properties>
@@ -206,8 +209,14 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtClienteIngresarResultados">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtClienteIngresarResultadosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfEdadIngresarResultados">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfEdadIngresarResultadosActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

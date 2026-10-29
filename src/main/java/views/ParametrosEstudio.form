@@ -224,8 +224,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfMuestraParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfMuestraParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfNombreParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNombreParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="JbtnGuardarEstudioParametroEstudio">
               <Properties>
@@ -350,6 +356,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfNombreParametroParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNombreParametroParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblOrdenReporteParametroEstudio">
               <Properties>
@@ -377,6 +386,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfNotaDescriptivaParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNotaDescriptivaParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblRangoInicialParametroEstudio">
               <Properties>
@@ -384,6 +396,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfRangoInicalParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfRangoInicalParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblRangoFinalParametroEstudio">
               <Properties>
@@ -391,6 +406,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfRangoFinalParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfRangoFinalParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblEdadInicialParametroEstudio">
               <Properties>
@@ -398,6 +416,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfEdadInicialParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfEdadInicialParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblEdadFinalParametroEstudio">
               <Properties>
@@ -413,6 +434,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Parametros"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnAgregarParametrosParametroEstudioActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="JscrlpParametroEstudio">
               <AuxValues>

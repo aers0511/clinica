@@ -17,6 +17,22 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
      */
     public EstudiosRegistrados() {
         initComponents();
+        cargarEstudios();
+    }
+
+    private void cargarEstudios() {
+        try {
+            javax.swing.table.DefaultTableModel modelo =
+                (javax.swing.table.DefaultTableModel) JtblEstudiosRegistrados.getModel();
+            modelo.setRowCount(0);
+            negocio.CatalogoNegocio catalogo = new negocio.CatalogoNegocio();
+            for (mapeos.EstudioEntidad estudio : catalogo.listarEstudios()) {
+                modelo.addRow(new Object[] {estudio.getNombre(), estudio.getTipoMuestra().getNombre(),
+                    estudio.getNotaDescriptiva(), catalogo.listarParametrosPorEstudio(estudio.getId()).size()});
+            }
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al cargar estudios: " + e.getMessage());
+        }
     }
 
     /**
@@ -94,8 +110,10 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
         JscrlpEstudiosRegistrados.setViewportView(JtblEstudiosRegistrados);
 
         JbtnNuevoEstudioEstudiosRegistrados.setText("Nuevo Estudio");
+        JbtnNuevoEstudioEstudiosRegistrados.addActionListener(this::JbtnNuevoEstudioEstudiosRegistradosActionPerformed);
 
         JbtnVolverMenuEstudiosRegistrados.setText("Volver al menu");
+        JbtnVolverMenuEstudiosRegistrados.addActionListener(this::JbtnVolverMenuEstudiosRegistradosActionPerformed);
 
         javax.swing.GroupLayout JpnlInferiorEstudiosRegistradosLayout = new javax.swing.GroupLayout(JpnlInferiorEstudiosRegistrados);
         JpnlInferiorEstudiosRegistrados.setLayout(JpnlInferiorEstudiosRegistradosLayout);
@@ -142,6 +160,16 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbtnNuevoEstudioEstudiosRegistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnNuevoEstudioEstudiosRegistradosActionPerformed
+        new NuevoEstudio().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnNuevoEstudioEstudiosRegistradosActionPerformed
+
+    private void JbtnVolverMenuEstudiosRegistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnVolverMenuEstudiosRegistradosActionPerformed
+        new MenuClinica().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnVolverMenuEstudiosRegistradosActionPerformed
 
     /**
      * @param args the command line arguments
