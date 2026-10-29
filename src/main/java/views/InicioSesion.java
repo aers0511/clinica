@@ -17,6 +17,7 @@ public class InicioSesion extends javax.swing.JFrame {
      */
     public InicioSesion() {
         initComponents();
+        JPwrdContraseñaInicioSesion.setText("");
     }
 
     /**
@@ -28,21 +29,140 @@ public class InicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        JlblUsuarioInicioSesion = new javax.swing.JLabel();
+        JlblContraseñaInicioSesion = new javax.swing.JLabel();
+        JtxtFUsuarioInicioSesion = new javax.swing.JTextField();
+        JPwrdContraseñaInicioSesion = new javax.swing.JPasswordField();
+        JlblTituloInicioSesion = new javax.swing.JLabel();
+        JlblOlvContraseñaInicioSesion = new javax.swing.JLabel();
+        JbtnIngresarInicioSesion = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JlblUsuarioInicioSesion.setText("Usuario:");
+
+        JlblContraseñaInicioSesion.setText("Contraseña:");
+
+        JtxtFUsuarioInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtxtFUsuarioInicioSesionActionPerformed(evt);
+            }
+        });
+
+        JPwrdContraseñaInicioSesion.setText("jPasswordField1");
+        JPwrdContraseñaInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JPwrdContraseñaInicioSesionActionPerformed(evt);
+            }
+        });
+
+        JlblTituloInicioSesion.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        JlblTituloInicioSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JlblTituloInicioSesion.setText("Clinica");
+
+        JlblOlvContraseñaInicioSesion.setForeground(new java.awt.Color(0, 102, 255));
+        JlblOlvContraseñaInicioSesion.setText("¿Olvido su contraseña?");
+        JlblOlvContraseñaInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JlblOlvContraseñaInicioSesionMouseClicked(evt);
+            }
+        });
+
+        JbtnIngresarInicioSesion.setText("Ingresar");
+        JbtnIngresarInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnIngresarInicioSesionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(JlblTituloInicioSesion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(JlblOlvContraseñaInicioSesion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JbtnIngresarInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JlblUsuarioInicioSesion)
+                                    .addComponent(JlblContraseñaInicioSesion))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JPwrdContraseñaInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JtxtFUsuarioInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(JlblTituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JlblUsuarioInicioSesion)
+                    .addComponent(JtxtFUsuarioInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JlblContraseñaInicioSesion)
+                    .addComponent(JPwrdContraseñaInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(JbtnIngresarInicioSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JlblOlvContraseñaInicioSesion)
+                .addGap(17, 17, 17))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JtxtFUsuarioInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtFUsuarioInicioSesionActionPerformed
+        JPwrdContraseñaInicioSesion.requestFocusInWindow();
+    }//GEN-LAST:event_JtxtFUsuarioInicioSesionActionPerformed
+
+    private void JPwrdContraseñaInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPwrdContraseñaInicioSesionActionPerformed
+        JbtnIngresarInicioSesion.doClick();
+    }//GEN-LAST:event_JPwrdContraseñaInicioSesionActionPerformed
+
+    private void JlblOlvContraseñaInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlblOlvContraseñaInicioSesionMouseClicked
+        javax.swing.JOptionPane.showMessageDialog(this,
+         "La recuperacion no esta implementada en el proyecto. Contacte al administrador.");
+    }//GEN-LAST:event_JlblOlvContraseñaInicioSesionMouseClicked
+
+    private void JbtnIngresarInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnIngresarInicioSesionActionPerformed
+        try {
+            String usuario = JtxtFUsuarioInicioSesion.getText().trim();
+            String contrasena = new String(JPwrdContraseñaInicioSesion.getPassword());
+            if (new negocio.UsuarioNegocio().iniciarSesion(usuario, contrasena) == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrectos");
+                return;
+            }
+            new MenuClinica().setVisible(true);
+            dispose();
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo iniciar sesion: " + e.getMessage());
+        }
+    }//GEN-LAST:event_JbtnIngresarInicioSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +190,13 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField JPwrdContraseñaInicioSesion;
+    private javax.swing.JButton JbtnIngresarInicioSesion;
+    private javax.swing.JLabel JlblContraseñaInicioSesion;
+    private javax.swing.JLabel JlblOlvContraseñaInicioSesion;
+    private javax.swing.JLabel JlblTituloInicioSesion;
+    private javax.swing.JLabel JlblUsuarioInicioSesion;
+    private javax.swing.JTextField JtxtFUsuarioInicioSesion;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTable1">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="3"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="JpnlSuperiorParametroEstudio" alignment="0" max="32767" attributes="0"/>
+          <Component id="JpnlInferiorParametroEstudio" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="JpnlSuperiorParametroEstudio" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="JpnlInferiorParametroEstudio" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="JpnlSuperiorParametroEstudio">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f2" green="f2" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="JlblTituloNuevoEstudio" min="-2" pref="344" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="JlblTituloNuevoEstudio" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="JlblTituloNuevoEstudio">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="36" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Salud Total"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="JlblLaboratorioNuevoEstudio">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Laboratorio Clinico"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="JpnlInferiorParametroEstudio">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="af" green="af" red="af" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="JpnlIzquieroParametroEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <Component id="JpnlDerechoParametroEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JpnlDerechoParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <Component id="JpnlIzquieroParametroEstudio" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="JpnlIzquieroParametroEstudio">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="JtxtfNombreParametroEstudio" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="JlblSubtituloIzquieroParametroEstudio" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="JlblNombreEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="JlblMuestraEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtxtfMuestraParametroEstudio" min="-2" pref="133" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JbtnGuardarEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Component id="JbtnCancelarEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="JlblSubtituloIzquieroParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="JlblNombreEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JtxtfNombreParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="JlblMuestraEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JtxtfMuestraParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JbtnGuardarEstudioParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JbtnCancelarEstudioParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="JlblMuestraEstudioParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Muestra:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblNombreEstudioParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblSubtituloIzquieroParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Estudio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfMuestraParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfMuestraParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfNombreParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNombreParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="JbtnGuardarEstudioParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar Estudio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnGuardarEstudioParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="JbtnCancelarEstudioParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancelar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCancelarEstudioParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="JpnlDerechoParametroEstudio">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JlblSubtituloDerechoParametroEstudio" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="JlblNombreParametroParametroEstudio" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="JtxtfNombreParametroParametroEstudio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JlblNotaDescriptivaParametroEstudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtxtfNotaDescriptivaParametroEstudio" alignment="0" pref="100" max="32767" attributes="0"/>
+                                  <Component id="JlblEdadInicialParametroEstudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtxtfEdadInicialParametroEstudio" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JlblEdadFinalParametroEstudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="JtxtfEdadFinalParametroEstudio" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="JlblOrdenReporteParametroEstudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JtxtfOrdenReporteParametroEstudio" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="JlblRangoInicialParametroEstudio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JtxtfRangoInicalParametroEstudio" alignment="0" pref="107" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="JlblRangoFinalParametroEstudio" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JlblUnidadMedidaParametroEstudio" max="32767" attributes="0"/>
+                                          <Component id="JtxtfUnidadMedidaParametroEstudio" max="32767" attributes="0"/>
+                                          <Component id="JtxtfRangoFinalParametroEstudio" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="JbtnAgregarParametrosParametroEstudio" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="JscrlpParametroEstudio" alignment="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="JlblSubtituloDerechoParametroEstudio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JlblNombreParametroParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblOrdenReporteParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblUnidadMedidaParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JtxtfNombreParametroParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtxtfOrdenReporteParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtxtfUnidadMedidaParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JlblNotaDescriptivaParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblRangoInicialParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblRangoFinalParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JtxtfNotaDescriptivaParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtxtfRangoInicalParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtxtfRangoFinalParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JlblEdadInicialParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblEdadFinalParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JtxtfEdadInicialParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtxtfEdadFinalParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JbtnAgregarParametrosParametroEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="JscrlpParametroEstudio" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="JlblSubtituloDerechoParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Parametros del Estudio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblNombreParametroParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfNombreParametroParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNombreParametroParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblOrdenReporteParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Orden  en Reporte:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfOrdenReporteParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfOrdenReporteParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblUnidadMedidaParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Unidad de medida:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfUnidadMedidaParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfUnidadMedidaParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblNotaDescriptivaParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nota descriptiva:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfNotaDescriptivaParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfNotaDescriptivaParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblRangoInicialParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rango Inicial:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfRangoInicalParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfRangoInicalParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblRangoFinalParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rango Final:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfRangoFinalParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfRangoFinalParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblEdadInicialParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edad Inicial:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfEdadInicialParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfEdadInicialParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="JlblEdadFinalParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edad Final:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="JtxtfEdadFinalParametroEstudio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfEdadFinalParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="JbtnAgregarParametrosParametroEstudio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agregar Parametros"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnAgregarParametrosParametroEstudioActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="JscrlpParametroEstudio">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="JtblParametrosEstudiosParametroEstudio">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="5" rowCount="4">
+                        <Column editable="false" title="Orden" type="java.lang.Object"/>
+                        <Column editable="false" title="Parametro" type="java.lang.Object"/>
+                        <Column editable="false" title="Unidad" type="java.lang.Object"/>
+                        <Column editable="false" title="Rango" type="java.lang.Object"/>
+                        <Column editable="false" title="Edades" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

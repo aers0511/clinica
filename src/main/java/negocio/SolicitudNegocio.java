@@ -212,4 +212,28 @@ public class SolicitudNegocio {
             em.close();
         }
     }
+
+    public List<PruebaEntidad> listarTodasPruebas() {
+        EntityManager em = Conexion.crearEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM PruebaEntidad p ORDER BY p.fechaHora DESC",
+                    PruebaEntidad.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public PruebaEntidad buscarPrueba(String folio) {
+        EntityManager em = Conexion.crearEntityManager();
+        try {
+            List<PruebaEntidad> pruebas = em.createQuery(
+                    "SELECT p FROM PruebaEntidad p WHERE p.folio = :folio", PruebaEntidad.class)
+                    .setParameter("folio", folio.trim()).getResultList();
+            if (pruebas.isEmpty()) throw new IllegalArgumentException("Folio no encontrado");
+            return pruebas.get(0);
+        } finally {
+            em.close();
+        }
+    }
+
 }
