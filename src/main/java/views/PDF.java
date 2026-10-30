@@ -9,8 +9,9 @@ package views;
  * @author eldp7
  */
 public class PDF extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PDF.class.getName());
+    private mapeos.PruebaEntidad pruebaActual;
 
     /**
      * Creates new form PDF
@@ -20,6 +21,7 @@ public class PDF extends javax.swing.JFrame {
         vista.setEditable(false);
         vista.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
         JscrlpVisualizacionPDF.setViewportView(vista);
+        cargarFolios();
         JbtnBuscarPDF.addActionListener(e -> buscarReporte());
         JlblGenerarPDFPDF.addActionListener(e -> guardarPDF());
         JbtnImprimirPDF.addActionListener(e -> imprimir());
@@ -27,55 +29,100 @@ public class PDF extends javax.swing.JFrame {
             new MenuClinica().setVisible(true);
             dispose();
         }, javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0),
-        javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+                javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
-
 
     private final javax.swing.JTextArea vista = new javax.swing.JTextArea();
     private String reporteActual;
 
     private void buscarReporte() {
         try {
-            String folio = JtxtfFolioPDF.getText().trim();
-            if (folio.isEmpty()) throw new IllegalArgumentException("Ingrese un folio");
-            mapeos.PruebaEntidad prueba = new negocio.SolicitudNegocio().buscarPrueba(folio);
-            reporteActual = new negocio.ReporteNegocio().generarReporte(prueba.getId());
+            String folio = (String) JcmbxFoliosdePruebas.getSelectedItem();
+
+            if (folio == null || folio.trim().isEmpty()) {
+                throw new IllegalArgumentException("Selecciona un folio de prueba.");
+            }
+
+            pruebaActual = new negocio.SolicitudNegocio().buscarPrueba(folio);
+
+            reporteActual = new negocio.ReporteNegocio()
+                    .generarReporte(pruebaActual.getId());
+
             vista.setText(reporteActual);
             vista.setCaretPosition(0);
+
         } catch (RuntimeException e) {
+            pruebaActual = null;
             reporteActual = null;
             vista.setText("");
-            javax.swing.JOptionPane.showMessageDialog(this, "No se pudo generar el reporte: " + e.getMessage());
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No se pudo generar el reporte: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
     private void guardarPDF() {
         if (reporteActual == null) {
             buscarReporte();
-            if (reporteActual == null) return;
+
+            if (reporteActual == null) {
+                return;
+            }
         }
+
+        String folio = pruebaActual.getFolio();
+
         javax.swing.JFileChooser selector = new javax.swing.JFileChooser();
-        selector.setSelectedFile(new java.io.File("Reporte-" + JtxtfFolioPDF.getText().trim() + ".pdf"));
-        if (selector.showSaveDialog(this) != javax.swing.JFileChooser.APPROVE_OPTION) return;
+        selector.setSelectedFile(new java.io.File("Reporte-" + folio + ".pdf"));
+
+        if (selector.showSaveDialog(this) != javax.swing.JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
         java.io.File archivo = selector.getSelectedFile();
+
         if (!archivo.getName().toLowerCase().endsWith(".pdf")) {
             archivo = new java.io.File(archivo.getAbsolutePath() + ".pdf");
         }
-        if (archivo.exists() && javax.swing.JOptionPane.showConfirmDialog(this,
-                "El archivo existe. Desea reemplazarlo?", "Confirmar",
-                javax.swing.JOptionPane.YES_NO_OPTION) != javax.swing.JOptionPane.YES_OPTION) return;
+
+        if (archivo.exists()
+                && javax.swing.JOptionPane.showConfirmDialog(
+                        this,
+                        "El archivo existe. ¿Deseas reemplazarlo?",
+                        "Confirmar",
+                        javax.swing.JOptionPane.YES_NO_OPTION
+                ) != javax.swing.JOptionPane.YES_OPTION) {
+            return;
+        }
+
         try {
             escribirPDF(archivo, reporteActual);
-            javax.swing.JOptionPane.showMessageDialog(this, "PDF guardado en: " + archivo);
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "PDF guardado en: " + archivo
+            );
+
         } catch (java.io.IOException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al guardar PDF: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Error al guardar PDF: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
     private void imprimir() {
         if (reporteActual == null) {
             buscarReporte();
-            if (reporteActual == null) return;
+            if (reporteActual == null) {
+                return;
+            }
         }
         try {
             vista.print();
@@ -84,7 +131,7 @@ public class PDF extends javax.swing.JFrame {
         }
     }
 
-    // Genera un PDF de texto sin dependencias externas.
+    // Genera  el pdf.
     private void escribirPDF(java.io.File archivo, String texto) throws java.io.IOException {
         java.util.List<String> lineas = new java.util.ArrayList<>();
         for (String linea : texto.replace("\r", "").split("\n", -1)) {
@@ -93,7 +140,9 @@ public class PDF extends javax.swing.JFrame {
                     .replaceAll("\\p{M}", "").replaceAll("[^\\x20-\\x7E]", "?");
             while (linea.length() > 88) {
                 int corte = linea.lastIndexOf(' ', 88);
-                if (corte < 1) corte = 88;
+                if (corte < 1) {
+                    corte = 88;
+                }
                 lineas.add(linea.substring(0, corte));
                 linea = linea.substring(corte).trim();
             }
@@ -112,13 +161,15 @@ public class PDF extends javax.swing.JFrame {
                 contenido = "<< /Type /Catalog /Pages 2 0 R >>";
             } else if (numero == 2) {
                 StringBuilder hijos = new StringBuilder();
-                for (int pagina = 0; pagina < paginas; pagina++) hijos.append(4 + pagina * 2).append(" 0 R ");
+                for (int pagina = 0; pagina < paginas; pagina++) {
+                    hijos.append(4 + pagina * 2).append(" 0 R ");
+                }
                 contenido = "<< /Type /Pages /Kids [" + hijos + "] /Count " + paginas + " >>";
             } else if (numero == 3) {
                 contenido = "<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>";
             } else if (numero % 2 == 0) {
                 contenido = "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] "
-                    + "/Resources << /Font << /F1 3 0 R >> >> /Contents " + (numero + 1) + " 0 R >>";
+                        + "/Resources << /Font << /F1 3 0 R >> >> /Contents " + (numero + 1) + " 0 R >>";
             } else {
                 int pagina = (numero - 5) / 2;
                 StringBuilder textoPagina = new StringBuilder("BT /F1 9 Tf 40 752 Td 14 TL\n");
@@ -162,11 +213,11 @@ public class PDF extends javax.swing.JFrame {
         JpnlIzquieroPDF = new javax.swing.JPanel();
         JlblReportePDF = new javax.swing.JLabel();
         JlblFolioPDF = new javax.swing.JLabel();
-        JtxtfFolioPDF = new javax.swing.JTextField();
         JbtnBuscarPDF = new javax.swing.JButton();
         JlblGenerarPDFPDF = new javax.swing.JButton();
         JbtnImprimirPDF = new javax.swing.JButton();
         JbtnCancelarPDF = new javax.swing.JButton();
+        JcmbxFoliosdePruebas = new javax.swing.JComboBox<>();
         JpnlVisualizacionPDF = new javax.swing.JPanel();
         JscrlpVisualizacionPDF = new javax.swing.JScrollPane();
         JlblVisualizacionPDF = new javax.swing.JLabel();
@@ -176,7 +227,7 @@ public class PDF extends javax.swing.JFrame {
         JpnlSuperiorPDF.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTitulopdf.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTitulopdf.setText("Salud Total");
+        JlblTitulopdf.setText("Clínica San José José");
 
         JlblLaboratorioPDF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioPDF.setText("Laboratorio Clinico");
@@ -187,21 +238,19 @@ public class PDF extends javax.swing.JFrame {
             JpnlSuperiorPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorPDFLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTitulopdf, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(524, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorPDFLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioPDF)
-                .addGap(54, 54, 54))
+                .addGroup(JpnlSuperiorPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioPDF)
+                    .addComponent(JlblTitulopdf, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpnlSuperiorPDFLayout.setVerticalGroup(
             JpnlSuperiorPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorPDFLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTitulopdf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioPDF)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorPDF.setBackground(new java.awt.Color(173, 173, 173));
@@ -210,38 +259,47 @@ public class PDF extends javax.swing.JFrame {
 
         JlblFolioPDF.setText("Folio de la prueba:");
 
-        JbtnBuscarPDF.setText("Buscar");
+        JbtnBuscarPDF.setBackground(new java.awt.Color(51, 255, 51));
+        JbtnBuscarPDF.setText("Cargar datos");
+        JbtnBuscarPDF.addActionListener(this::JbtnBuscarPDFActionPerformed);
 
         JlblGenerarPDFPDF.setText("Generar  PDF");
 
         JbtnImprimirPDF.setText("Imprimir");
 
+        JbtnCancelarPDF.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCancelarPDF.setForeground(new java.awt.Color(255, 255, 255));
         JbtnCancelarPDF.setText("Cancelar");
         JbtnCancelarPDF.addActionListener(this::JbtnCancelarPDFActionPerformed);
+
+        JcmbxFoliosdePruebas.addActionListener(this::JcmbxFoliosdePruebasActionPerformed);
 
         javax.swing.GroupLayout JpnlIzquieroPDFLayout = new javax.swing.GroupLayout(JpnlIzquieroPDF);
         JpnlIzquieroPDF.setLayout(JpnlIzquieroPDFLayout);
         JpnlIzquieroPDFLayout.setHorizontalGroup(
             JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
-                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JpnlIzquieroPDFLayout.createSequentialGroup()
-                            .addGap(32, 32, 32)
-                            .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(JbtnBuscarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JlblFolioPDF)
-                                    .addComponent(JlblReportePDF)
-                                    .addComponent(JtxtfFolioPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JcmbxFoliosdePruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JpnlIzquieroPDFLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JbtnBuscarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
+                                        .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(JlblFolioPDF)
+                                            .addComponent(JlblReportePDF))
+                                        .addGap(46, 46, 46))))
+                            .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JlblGenerarPDFPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(JbtnImprimirPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JlblGenerarPDFPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                .addComponent(JbtnImprimirPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(JbtnCancelarPDF)))
+                            .addGap(62, 62, 62)
+                            .addComponent(JbtnCancelarPDF))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         JpnlIzquieroPDFLayout.setVerticalGroup(
@@ -252,7 +310,7 @@ public class PDF extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(JlblFolioPDF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtxtfFolioPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JcmbxFoliosdePruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(JbtnBuscarPDF)
                 .addGap(28, 28, 28)
@@ -284,7 +342,7 @@ public class PDF extends javax.swing.JFrame {
             .addGroup(JpnlInferiorPDFLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(JpnlIzquieroPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addGap(50, 50, 50)
                 .addComponent(JpnlVisualizacionPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -321,6 +379,39 @@ public class PDF extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_JbtnCancelarPDFActionPerformed
 
+    private void JcmbxFoliosdePruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxFoliosdePruebasActionPerformed
+        pruebaActual = null;
+        reporteActual = null;
+        vista.setText("");
+    }//GEN-LAST:event_JcmbxFoliosdePruebasActionPerformed
+
+    private void JbtnBuscarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnBuscarPDFActionPerformed
+        buscarReporte();
+    }//GEN-LAST:event_JbtnBuscarPDFActionPerformed
+
+    private void cargarFolios() {
+        try {
+            JcmbxFoliosdePruebas.removeAllItems();
+
+            negocio.SolicitudNegocio solicitudNegocio
+                    = new negocio.SolicitudNegocio();
+
+            for (mapeos.PruebaEntidad prueba : solicitudNegocio.listarTodasPruebas()) {
+                JcmbxFoliosdePruebas.addItem(prueba.getFolio());
+            }
+
+            JcmbxFoliosdePruebas.setSelectedIndex(-1);
+
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Error al cargar los folios: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -350,6 +441,7 @@ public class PDF extends javax.swing.JFrame {
     private javax.swing.JButton JbtnBuscarPDF;
     private javax.swing.JButton JbtnCancelarPDF;
     private javax.swing.JButton JbtnImprimirPDF;
+    private javax.swing.JComboBox<String> JcmbxFoliosdePruebas;
     private javax.swing.JLabel JlblFolioPDF;
     private javax.swing.JButton JlblGenerarPDFPDF;
     private javax.swing.JLabel JlblLaboratorioPDF;
@@ -361,6 +453,5 @@ public class PDF extends javax.swing.JFrame {
     private javax.swing.JPanel JpnlSuperiorPDF;
     private javax.swing.JPanel JpnlVisualizacionPDF;
     private javax.swing.JScrollPane JscrlpVisualizacionPDF;
-    private javax.swing.JTextField JtxtfFolioPDF;
     // End of variables declaration//GEN-END:variables
 }

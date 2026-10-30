@@ -33,6 +33,9 @@ public class EstudioEntidad implements Serializable {
 
     @OneToMany(mappedBy = "estudio")
     private List<ParametroEntidad> parametros;
+    
+    @Column(name = "activo")
+    private boolean activo;
 
     public EstudioEntidad() {
     }
@@ -81,6 +84,15 @@ public class EstudioEntidad implements Serializable {
     public void setParametros(List<ParametroEntidad> parametros) {
         this.parametros = parametros;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
 
     @Override
     public String toString() {

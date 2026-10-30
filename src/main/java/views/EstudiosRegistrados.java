@@ -58,7 +58,7 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
         JpnlSuperiorEstudiosRegistrados.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloEstudiosRegistrados.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloEstudiosRegistrados.setText("Salud Total");
+        JlblTituloEstudiosRegistrados.setText("Clínica San José José");
 
         JlblLaboratorioEstudiosRegistrados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioEstudiosRegistrados.setText("Laboratorio Clinico");
@@ -69,21 +69,19 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
             JpnlSuperiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorEstudiosRegistradosLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(525, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorEstudiosRegistradosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioEstudiosRegistrados)
-                .addGap(54, 54, 54))
+                .addGroup(JpnlSuperiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioEstudiosRegistrados)
+                    .addComponent(JlblTituloEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpnlSuperiorEstudiosRegistradosLayout.setVerticalGroup(
             JpnlSuperiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorEstudiosRegistradosLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioEstudiosRegistrados)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorEstudiosRegistrados.setBackground(new java.awt.Color(173, 173, 173));
@@ -109,6 +107,7 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
         });
         JscrlpEstudiosRegistrados.setViewportView(JtblEstudiosRegistrados);
 
+        JbtnNuevoEstudioEstudiosRegistrados.setBackground(new java.awt.Color(102, 255, 102));
         JbtnNuevoEstudioEstudiosRegistrados.setText("Nuevo Estudio");
         JbtnNuevoEstudioEstudiosRegistrados.addActionListener(this::JbtnNuevoEstudioEstudiosRegistradosActionPerformed);
 
@@ -122,21 +121,21 @@ public class EstudiosRegistrados extends javax.swing.JFrame {
             .addGroup(JpnlInferiorEstudiosRegistradosLayout.createSequentialGroup()
                 .addGroup(JpnlInferiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpnlInferiorEstudiosRegistradosLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(JscrlpEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JpnlInferiorEstudiosRegistradosLayout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addComponent(JbtnNuevoEstudioEstudiosRegistrados)
                         .addGap(129, 129, 129)
-                        .addComponent(JbtnVolverMenuEstudiosRegistrados)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JbtnVolverMenuEstudiosRegistrados))
+                    .addGroup(JpnlInferiorEstudiosRegistradosLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(JscrlpEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         JpnlInferiorEstudiosRegistradosLayout.setVerticalGroup(
             JpnlInferiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorEstudiosRegistradosLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(20, 20, 20)
                 .addComponent(JscrlpEstudiosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addGroup(JpnlInferiorEstudiosRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbtnNuevoEstudioEstudiosRegistrados)
                     .addComponent(JbtnVolverMenuEstudiosRegistrados))

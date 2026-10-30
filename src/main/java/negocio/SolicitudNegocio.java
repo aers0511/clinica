@@ -1,4 +1,3 @@
-
 package negocio;
 
 import java.time.LocalDate;
@@ -91,6 +90,7 @@ public class SolicitudNegocio {
             prueba.setFechaHora(ahora);
             prueba.setCliente(cliente);
             prueba.setDoctor(doctor);
+            prueba.setActivo(true);
 
             List<PruebaEstudioEntidad> relaciones = new ArrayList<>();
             for (int idEstudio : new LinkedHashSet<>(idsEstudios)) {
@@ -169,6 +169,25 @@ public class SolicitudNegocio {
         }
     }
 
+    public void cancelarPrueba(int idSolicitud) {
+        EntityManager em = Conexion.crearEntityManager();
+        try {
+            em.getTransaction().begin();
+            PruebaEntidad solicitud = em.find(PruebaEntidad.class, idSolicitud);
+            if (solicitud == null) {
+                throw new IllegalArgumentException("La solicitud no existe");
+            }
+            solicitud.setActivo(false);
+            em.merge(solicitud);
+            em.getTransaction().commit();
+        } catch (RuntimeException e) {
+            Conexion.cancelar(em);
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<ClienteEntidad> listarClientes() {
         EntityManager em = Conexion.crearEntityManager();
         try {
@@ -229,7 +248,9 @@ public class SolicitudNegocio {
             List<PruebaEntidad> pruebas = em.createQuery(
                     "SELECT p FROM PruebaEntidad p WHERE p.folio = :folio", PruebaEntidad.class)
                     .setParameter("folio", folio.trim()).getResultList();
-            if (pruebas.isEmpty()) throw new IllegalArgumentException("Folio no encontrado");
+            if (pruebas.isEmpty()) {
+                throw new IllegalArgumentException("Folio no encontrado");
+            }
             return pruebas.get(0);
         } finally {
             em.close();

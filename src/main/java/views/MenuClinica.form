@@ -24,16 +24,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="JpnlSuperiorMenuClinica" max="32767" attributes="0"/>
-          <Component id="JpnlInferiorMenuClinica" alignment="0" max="32767" attributes="0"/>
+          <Component id="JpnlInferiorMenuClinica" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="JpnlSuperiorMenuClinica" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="JpnlInferiorMenuClinica" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,12 +51,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="JlblTituloMenuClinica" min="-2" pref="344" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="JlblLaboratorioMenuClinica" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="54" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="JlblTituloMenuClinica" min="-2" pref="344" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioMenuClinica" min="-2" max="-2" attributes="0"/>
+                  <Component id="JbtnCerrarSesionMenuClinica" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -66,8 +74,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="JlblTituloMenuClinica" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="JlblLaboratorioMenuClinica" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <Component id="JbtnCerrarSesionMenuClinica" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -79,7 +89,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="San Jos&#xe9; Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioMenuClinica">
@@ -89,6 +99,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Laboratorio Clinico"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="JbtnCerrarSesionMenuClinica">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCerrarSesionMenuClinicaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -103,50 +127,36 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="JbtnCargarDatosMenuClinica" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="JbtnCerrarSesionMenuClinica" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="JbtnDoctoresMenuClinica" min="-2" pref="106" max="-2" attributes="0"/>
+                          <EmptySpace pref="39" max="32767" attributes="0"/>
+                          <Component id="JbtnIngresarResultadosMenuClinica" min="-2" pref="151" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="JbtnDoctoresMenuClinica" pref="106" max="32767" attributes="0"/>
-                              <Component id="JbtnClientesMenuClinica" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="JbtnIngresarResultadosMenuClinica" pref="151" max="32767" attributes="0"/>
-                              <Component id="JbtnCatalogEstudiosMenuClinica" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="JbtnClientesMenuClinica" min="-2" pref="106" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="JbtnCatalogEstudiosMenuClinica" min="-2" pref="151" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="JbtnSolicitudesMenuClinica" min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="JbtnPDFMenuClinica" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="JbtnPDFMenuClinica" max="32767" attributes="0"/>
+                      <Component id="JbtnSolicitudesMenuClinica" pref="95" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JbtnCargarDatosMenuClinica" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JbtnCerrarSesionMenuClinica" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="JbtnSolicitudesMenuClinica" alignment="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JbtnClientesMenuClinica" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="JbtnCatalogEstudiosMenuClinica" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="JbtnClientesMenuClinica" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                      <Component id="JbtnCatalogEstudiosMenuClinica" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                      <Component id="JbtnSolicitudesMenuClinica" alignment="3" min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -154,28 +164,12 @@
                       <Component id="JbtnIngresarResultadosMenuClinica" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="JbtnPDFMenuClinica" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="JbtnCargarDatosMenuClinica">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Carga Masiva de Datos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCargarDatosMenuClinicaActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="JbtnCerrarSesionMenuClinica">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCerrarSesionMenuClinicaActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="JbtnClientesMenuClinica">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -240,7 +234,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PDF"/>
+            <Property name="text" type="java.lang.String" value="Imprimir"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnPDFMenuClinicaActionPerformed"/>

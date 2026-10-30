@@ -31,9 +31,8 @@ public class MenuClinica extends javax.swing.JFrame {
         JpnlSuperiorMenuClinica = new javax.swing.JPanel();
         JlblTituloMenuClinica = new javax.swing.JLabel();
         JlblLaboratorioMenuClinica = new javax.swing.JLabel();
-        JpnlInferiorMenuClinica = new javax.swing.JPanel();
-        JbtnCargarDatosMenuClinica = new javax.swing.JButton();
         JbtnCerrarSesionMenuClinica = new javax.swing.JButton();
+        JpnlInferiorMenuClinica = new javax.swing.JPanel();
         JbtnClientesMenuClinica = new javax.swing.JButton();
         JbtnSolicitudesMenuClinica = new javax.swing.JButton();
         JbtnDoctoresMenuClinica = new javax.swing.JButton();
@@ -46,10 +45,15 @@ public class MenuClinica extends javax.swing.JFrame {
         JpnlSuperiorMenuClinica.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloMenuClinica.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloMenuClinica.setText("Salud Total");
+        JlblTituloMenuClinica.setText("San José José");
 
         JlblLaboratorioMenuClinica.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioMenuClinica.setText("Laboratorio Clinico");
+
+        JbtnCerrarSesionMenuClinica.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCerrarSesionMenuClinica.setForeground(new java.awt.Color(255, 255, 255));
+        JbtnCerrarSesionMenuClinica.setText("Cerrar Sesion");
+        JbtnCerrarSesionMenuClinica.addActionListener(this::JbtnCerrarSesionMenuClinicaActionPerformed);
 
         javax.swing.GroupLayout JpnlSuperiorMenuClinicaLayout = new javax.swing.GroupLayout(JpnlSuperiorMenuClinica);
         JpnlSuperiorMenuClinica.setLayout(JpnlSuperiorMenuClinicaLayout);
@@ -57,11 +61,16 @@ public class MenuClinica extends javax.swing.JFrame {
             JpnlSuperiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorMenuClinicaLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(JpnlSuperiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JpnlSuperiorMenuClinicaLayout.createSequentialGroup()
+                        .addComponent(JlblLaboratorioMenuClinica)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(JpnlSuperiorMenuClinicaLayout.createSequentialGroup()
+                        .addComponent(JlblTituloMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorMenuClinicaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioMenuClinica)
+                .addComponent(JbtnCerrarSesionMenuClinica)
                 .addGap(54, 54, 54))
         );
         JpnlSuperiorMenuClinicaLayout.setVerticalGroup(
@@ -69,18 +78,14 @@ public class MenuClinica extends javax.swing.JFrame {
             .addGroup(JpnlSuperiorMenuClinicaLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioMenuClinica)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(JbtnCerrarSesionMenuClinica)
                 .addContainerGap())
         );
 
         JpnlInferiorMenuClinica.setBackground(new java.awt.Color(178, 178, 178));
-
-        JbtnCargarDatosMenuClinica.setText("Carga Masiva de Datos");
-        JbtnCargarDatosMenuClinica.addActionListener(this::JbtnCargarDatosMenuClinicaActionPerformed);
-
-        JbtnCerrarSesionMenuClinica.setText("Cerrar Sesion");
-        JbtnCerrarSesionMenuClinica.addActionListener(this::JbtnCerrarSesionMenuClinicaActionPerformed);
 
         JbtnClientesMenuClinica.setBackground(new java.awt.Color(51, 51, 51));
         JbtnClientesMenuClinica.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,7 +109,7 @@ public class MenuClinica extends javax.swing.JFrame {
 
         JbtnPDFMenuClinica.setBackground(new java.awt.Color(51, 51, 51));
         JbtnPDFMenuClinica.setForeground(new java.awt.Color(255, 255, 255));
-        JbtnPDFMenuClinica.setText("PDF");
+        JbtnPDFMenuClinica.setText("Imprimir");
         JbtnPDFMenuClinica.addActionListener(this::JbtnPDFMenuClinicaActionPerformed);
 
         JbtnCatalogEstudiosMenuClinica.setBackground(new java.awt.Color(51, 51, 51));
@@ -117,46 +122,36 @@ public class MenuClinica extends javax.swing.JFrame {
         JpnlInferiorMenuClinicaLayout.setHorizontalGroup(
             JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorMenuClinicaLayout.createSequentialGroup()
-                .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(JpnlInferiorMenuClinicaLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(JbtnCargarDatosMenuClinica)
-                        .addGap(47, 47, 47)
-                        .addComponent(JbtnCerrarSesionMenuClinica))
-                    .addGroup(JpnlInferiorMenuClinicaLayout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JbtnDoctoresMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                            .addComponent(JbtnClientesMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(67, 67, 67)
-                        .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JbtnIngresarResultadosMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(JbtnCatalogEstudiosMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(67, 67, 67)
-                .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JbtnSolicitudesMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JbtnPDFMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                        .addComponent(JbtnDoctoresMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(JbtnIngresarResultadosMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorMenuClinicaLayout.createSequentialGroup()
+                        .addComponent(JbtnClientesMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbtnCatalogEstudiosMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JbtnPDFMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbtnSolicitudesMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         JpnlInferiorMenuClinicaLayout.setVerticalGroup(
             JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorMenuClinicaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(53, 53, 53)
                 .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbtnCargarDatosMenuClinica)
-                    .addComponent(JbtnCerrarSesionMenuClinica))
-                .addGap(79, 79, 79)
-                .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JbtnSolicitudesMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JbtnClientesMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(JbtnCatalogEstudiosMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(JbtnClientesMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbtnCatalogEstudiosMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbtnSolicitudesMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(JpnlInferiorMenuClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbtnDoctoresMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbtnIngresarResultadosMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbtnPDFMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(149, 149, 149))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,24 +159,19 @@ public class MenuClinica extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(JpnlSuperiorMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(JpnlInferiorMenuClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JpnlInferiorMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JpnlSuperiorMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JpnlInferiorMenuClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JbtnCargarDatosMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosMenuClinicaActionPerformed
-        javax.swing.JOptionPane.showMessageDialog(this,
-          "Use Clientes, Doctores, Estudios y Solicitudes para registrar los datos.");
-    }//GEN-LAST:event_JbtnCargarDatosMenuClinicaActionPerformed
 
     private void JbtnCerrarSesionMenuClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCerrarSesionMenuClinicaActionPerformed
         new InicioSesion().setVisible(true);
@@ -244,7 +234,6 @@ public class MenuClinica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbtnCargarDatosMenuClinica;
     private javax.swing.JButton JbtnCatalogEstudiosMenuClinica;
     private javax.swing.JButton JbtnCerrarSesionMenuClinica;
     private javax.swing.JButton JbtnClientesMenuClinica;

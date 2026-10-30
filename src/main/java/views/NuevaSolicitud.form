@@ -23,11 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Component id="JpnlInferiorNuevoSolicitud" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="JpnlSuperiorNuevoSolicitud" max="32767" attributes="0"/>
           </Group>
-          <Component id="JpnlInferiorNuevoSolicitud" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,15 +51,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="JlblTituloNuevoEstudio" min="-2" pref="344" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblTituloNuevoEstudio" min="-2" pref="382" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -68,9 +66,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="JlblTituloNuevoEstudio" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,7 +79,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="Cl&#xed;nica San Jos&#xe9; Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioNuevoEstudio">
@@ -104,126 +102,103 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
-                          <Component id="JbtnCargarDatosNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                          <Component id="JbtnVolverMenuNuevaEstudio" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="JpnlRequisitosNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="JpnlRequisitosNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="JpnlRequisitosNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JbtnCargarDatosNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JbtnVolverMenuNuevaEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="JbtnCargarDatosNuevaSolicitud">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cargar Datos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCargarDatosNuevaSolicitudActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="JbtnVolverMenuNuevaEstudio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Volver al menu"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuNuevaEstudioActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JPanel" name="JpnlRequisitosNuevaSolicitud">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="JlblSubtituloNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          <Component id="JlblSubtituloNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="JlblDoctorNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="JlblFolioNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JlblFechaHoraNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JcmbxDoctorNuevaSolicitud" alignment="0" pref="319" max="32767" attributes="0"/>
-                                          <Component id="JlblClienteNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JtxtfFechaHoraNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JtxtfFolioNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JcmbxClienteNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="JchkbxEstudiosSolicitarNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JlblEstudioSolicitarNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="JlblFolioNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JlblFechaHoraNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JcmbxDoctorNuevaSolicitud" alignment="0" pref="319" max="32767" attributes="0"/>
+                                      <Component id="JlblClienteNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtxtfFechaHoraNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="JtxtfFolioNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="JcmbxClienteNuevaSolicitud" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="JlblDoctorNuevaSolicitud" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JlblEstudioSolicitarNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JbtnCargarDatosNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jButton1" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtEstudiosSolicitarNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="JbtnVolverMenuNuevaEstudio" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="196" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="JlblSubtituloNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="JlblFolioNuevaSolicitud" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="JtxtfFolioNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JchkbxEstudiosSolicitarNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="JlblFechaHoraNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="JtxtfFechaHoraNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="JlblClienteNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="JcmbxClienteNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="JlblDoctorNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="JcmbxDoctorNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="JtxtfFolioNuevaSolicitud" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="JlblEstudioSolicitarNuevaSolicitud" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtEstudiosSolicitarNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="JlblFechaHoraNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="JtxtfFechaHoraNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="JlblClienteNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JcmbxClienteNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JbtnVolverMenuNuevaEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="JlblDoctorNuevaSolicitud" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JcmbxDoctorNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JbtnCargarDatosNuevaSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -248,11 +223,17 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfFechaHoraNuevaSolicitud">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfFechaHoraNuevaSolicitudActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfFolioNuevaSolicitud">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfFolioNuevaSolicitudActionPerformed"/>
               </Events>
@@ -300,18 +281,48 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="JchkbxEstudiosSolicitarNuevaSolicitud">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Orina"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="JlblEstudioSolicitarNuevaSolicitud">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Estudios a solcitar:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="JbtnCargarDatosNuevaSolicitud">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="ff" red="33" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Crear solicitud"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCargarDatosNuevaSolicitudActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Seleccionar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="txtEstudiosSolicitarNuevaSolicitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Estudios.."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="JbtnVolverMenuNuevaEstudio">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cancelar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuNuevaEstudioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
