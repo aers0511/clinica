@@ -44,6 +44,9 @@ public class PruebaEntidad implements Serializable {
     @OneToMany(mappedBy = "prueba")
     private List<ResultadoEntidad> resultados;
 
+    @Column(name = "activo")
+    private boolean activo;
+
     public PruebaEntidad() {
     }
 
@@ -101,6 +104,14 @@ public class PruebaEntidad implements Serializable {
 
     public void setResultados(List<ResultadoEntidad> resultados) {
         this.resultados = resultados;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override

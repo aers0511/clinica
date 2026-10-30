@@ -73,13 +73,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="JlblTituloNuevoEstudio" min="-2" pref="344" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblTituloNuevoEstudio" min="-2" pref="373" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -88,9 +86,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="JlblTituloNuevoEstudio" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,7 +99,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="Cl&#xed;nica San Jos&#xe9; Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioNuevoEstudio">
@@ -173,12 +171,12 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="JbtnGuardarEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="JbtnCancelarEstudioParametroEstudio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
@@ -243,6 +241,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="JbtnCancelarEstudioParametroEstudio">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
@@ -362,7 +366,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="JlblOrdenReporteParametroEstudio">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Orden  en Reporte:"/>
+                <Property name="text" type="java.lang.String" value="Orden en Reporte:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="JtxtfOrdenReporteParametroEstudio">
@@ -432,6 +436,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="JbtnAgregarParametrosParametroEstudio">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="ff" red="33" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Agregar Parametros"/>
               </Properties>
               <Events>

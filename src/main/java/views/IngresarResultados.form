@@ -50,13 +50,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="JlblTituloIngresarResultados" min="-2" pref="344" max="-2" attributes="0"/>
-                  <EmptySpace pref="553" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JlblLaboratorioIngresarResultados" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblTituloIngresarResultados" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioIngresarResultados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -65,9 +63,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="JlblTituloIngresarResultados" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioIngresarResultados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="JlblLaboratorioIngresarResultados" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,7 +76,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="Cl&#xed;nica San Jos&#xe9; Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioIngresarResultados">
@@ -101,36 +99,41 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="JbtnCargarDatosIngresarResultados" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="JbtnCancelarIngresarResultados" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="JpnlInferiorDentroIngresarResultados" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="JbtnCargarDatosIngresarResultados" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="JbtnCancelarIngresarResultados" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JpnlSuperiorDentroIngresarResultados" max="32767" attributes="0"/>
-                          <Component id="JpnlInferiorDentroIngresarResultados" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                          <Component id="JpnlSuperiorDentroIngresarResultados" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="JpnlSuperiorDentroIngresarResultados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="JpnlInferiorDentroIngresarResultados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JbtnCargarDatosIngresarResultados" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JbtnCancelarIngresarResultados" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JbtnCancelarIngresarResultados" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JbtnCargarDatosIngresarResultados" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -155,27 +158,22 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JlblPruebaIngresarResultados" max="32767" attributes="0"/>
-                          <Component id="JtxtfPruebaIngresarResultados" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                              <Component id="JlblClienteIngresarResultados" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="JcmbxClienteIngresarResultado" min="-2" pref="139" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="JlblPruebaIngresarResultados" min="-2" max="-2" attributes="0"/>
+                          <Component id="JcmbxFoliosdePruebas" min="-2" pref="115" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JcmbxClienteIngresarResultado" min="-2" pref="139" max="-2" attributes="0"/>
+                          <Component id="JlblClienteIngresarResultados" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="JlblEdadIngresarResultados" min="-2" max="-2" attributes="0"/>
                           <Component id="JtxtfEdadIngresarResultados" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="153" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -190,11 +188,11 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JtxtfPruebaIngresarResultados" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JtxtfEdadIngresarResultados" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JcmbxClienteIngresarResultado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JcmbxFoliosdePruebas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -202,7 +200,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="JlblPruebaIngresarResultados">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Prueba(Folio):"/>
+                <Property name="text" type="java.lang.String" value="Folio de la prueba"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="JlblClienteIngresarResultados">
@@ -215,12 +213,10 @@
                 <Property name="text" type="java.lang.String" value="Edad:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="JtxtfPruebaIngresarResultados">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfPruebaIngresarResultadosActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="JtxtfEdadIngresarResultados">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtfEdadIngresarResultadosActionPerformed"/>
               </Events>
@@ -238,6 +234,19 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JComboBox" name="JcmbxFoliosdePruebas">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JcmbxFoliosdePruebasActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="JpnlInferiorDentroIngresarResultados">
@@ -248,7 +257,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JscrlpIngresarResultados" alignment="1" pref="564" max="32767" attributes="0"/>
+                          <Component id="JscrlpIngresarResultados" pref="564" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="JlblParametrosIngresarResultados" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -261,10 +270,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="JlblParametrosIngresarResultados" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="JscrlpIngresarResultados" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JscrlpIngresarResultados" pref="150" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -298,6 +308,12 @@
         </Container>
         <Component class="javax.swing.JButton" name="JbtnCancelarIngresarResultados">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>

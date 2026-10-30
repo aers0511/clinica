@@ -4,12 +4,14 @@
  */
 package views;
 
+import mapeos.PruebaEntidad;
+
 /**
  *
  * @author eldp7
  */
 public class SolicitudesRegistradas extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SolicitudesRegistradas.class.getName());
 
     /**
@@ -19,7 +21,8 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
         initComponents();
         cargarSolicitudes();
         JtblSolicitudesRegistradas.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override public void mouseClicked(java.awt.event.MouseEvent e) {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
                 int fila = JtblSolicitudesRegistradas.rowAtPoint(e.getPoint());
                 int columna = JtblSolicitudesRegistradas.columnAtPoint(e.getPoint());
                 if (fila >= 0 && columna == 5) {
@@ -33,21 +36,34 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
 
     private void cargarSolicitudes() {
         try {
-            javax.swing.table.DefaultTableModel modelo =
-                (javax.swing.table.DefaultTableModel) JtblSolicitudesRegistradas.getModel();
+            javax.swing.table.DefaultTableModel modelo
+                    = (javax.swing.table.DefaultTableModel) JtblSolicitudesRegistradas.getModel();
+
             modelo.setRowCount(0);
+
             negocio.SolicitudNegocio solicitud = new negocio.SolicitudNegocio();
-            negocio.ResultadoNegocio resultado = new negocio.ResultadoNegocio();
+
             for (mapeos.PruebaEntidad p : solicitud.listarTodasPruebas()) {
-                String estado = resultado.parametrosFaltantes(p.getId()).isEmpty()
-                    ? "Completa" : "Pendiente";
-                modelo.addRow(new Object[] {p.getFolio(), p.getFechaHora(),
+
+                String estado = p.isActivo() ? "Activa" : "Cancelada";
+
+                modelo.addRow(new Object[]{
+                    p.getFolio(),
+                    p.getFechaHora(),
                     p.getCliente().getNombreCompleto(),
-                    p.getDoctor() == null ? "A quien corresponda" : p.getDoctor().getNombreCompleto(),
-                    estado, "Capturar"});
+                    p.getDoctor() == null
+                    ? "A quien corresponda"
+                    : p.getDoctor().getNombreCompleto(),
+                    estado,
+                    "Capturar"
+                });
             }
+
         } catch (RuntimeException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al consultar solicitudes: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Error al consultar solicitudes: " + e.getMessage()
+            );
         }
     }
 
@@ -68,6 +84,7 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
         JtblSolicitudesRegistradas = new javax.swing.JTable();
         JbtnNuevoEstudioSolicitudesRegistradas = new javax.swing.JButton();
         JbtnVolverMenuSolicitudesRegistradas = new javax.swing.JButton();
+        JbtnCancelarSolicitud = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +92,7 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
         JpnlTituloSolicitudesRegistradas.setPreferredSize(new java.awt.Dimension(381, 150));
 
         JlblTituloSolicitudesRegistradas.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloSolicitudesRegistradas.setText("Salud Total");
+        JlblTituloSolicitudesRegistradas.setText("Clínica San José José");
 
         JlblLaboratorioSolicitudesRegistradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioSolicitudesRegistradas.setText("Laboratorio Clinico");
@@ -86,21 +103,19 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
             JpnlTituloSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlTituloSolicitudesRegistradasLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(JlblTituloSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlTituloSolicitudesRegistradasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioSolicitudesRegistradas)
-                .addGap(47, 47, 47))
+                .addGroup(JpnlTituloSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioSolicitudesRegistradas)
+                    .addComponent(JlblTituloSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(427, Short.MAX_VALUE))
         );
         JpnlTituloSolicitudesRegistradasLayout.setVerticalGroup(
             JpnlTituloSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlTituloSolicitudesRegistradasLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(JlblTituloSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioSolicitudesRegistradas)
-                .addContainerGap())
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         JpnlInferiorSolicitudesRegistradas.setBackground(new java.awt.Color(175, 175, 175));
@@ -126,45 +141,55 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
         });
         JscrlpTablaSolicitudesRegistradas.setViewportView(JtblSolicitudesRegistradas);
 
-        JbtnNuevoEstudioSolicitudesRegistradas.setText("Nuevo Estudio");
+        JbtnNuevoEstudioSolicitudesRegistradas.setBackground(new java.awt.Color(51, 255, 51));
+        JbtnNuevoEstudioSolicitudesRegistradas.setText("Nueva Solicitud");
         JbtnNuevoEstudioSolicitudesRegistradas.addActionListener(this::JbtnNuevoEstudioSolicitudesRegistradasActionPerformed);
 
-        JbtnVolverMenuSolicitudesRegistradas.setText("Volver al menu");
+        JbtnVolverMenuSolicitudesRegistradas.setText("Volver al Menú");
         JbtnVolverMenuSolicitudesRegistradas.addActionListener(this::JbtnVolverMenuSolicitudesRegistradasActionPerformed);
+
+        JbtnCancelarSolicitud.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCancelarSolicitud.setForeground(new java.awt.Color(255, 255, 255));
+        JbtnCancelarSolicitud.setText("Cancelar Solicitud");
+        JbtnCancelarSolicitud.addActionListener(this::JbtnCancelarSolicitudActionPerformed);
 
         javax.swing.GroupLayout JpnlInferiorSolicitudesRegistradasLayout = new javax.swing.GroupLayout(JpnlInferiorSolicitudesRegistradas);
         JpnlInferiorSolicitudesRegistradas.setLayout(JpnlInferiorSolicitudesRegistradasLayout);
         JpnlInferiorSolicitudesRegistradasLayout.setHorizontalGroup(
             JpnlInferiorSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorSolicitudesRegistradasLayout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addComponent(JscrlpTablaSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
             .addGroup(JpnlInferiorSolicitudesRegistradasLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(JbtnNuevoEstudioSolicitudesRegistradas)
-                .addGap(86, 86, 86)
-                .addComponent(JbtnVolverMenuSolicitudesRegistradas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(JpnlInferiorSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(JpnlInferiorSolicitudesRegistradasLayout.createSequentialGroup()
+                        .addComponent(JbtnNuevoEstudioSolicitudesRegistradas)
+                        .addGap(18, 18, 18)
+                        .addComponent(JbtnVolverMenuSolicitudesRegistradas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbtnCancelarSolicitud))
+                    .addComponent(JscrlpTablaSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
         JpnlInferiorSolicitudesRegistradasLayout.setVerticalGroup(
             JpnlInferiorSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorSolicitudesRegistradasLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(JscrlpTablaSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(JpnlInferiorSolicitudesRegistradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbtnNuevoEstudioSolicitudesRegistradas)
-                    .addComponent(JbtnVolverMenuSolicitudesRegistradas))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(JbtnVolverMenuSolicitudesRegistradas)
+                    .addComponent(JbtnCancelarSolicitud))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpnlTituloSolicitudesRegistradas, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
             .addComponent(JpnlInferiorSolicitudesRegistradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JpnlTituloSolicitudesRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,6 +211,68 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
         new MenuClinica().setVisible(true);
         dispose();
     }//GEN-LAST:event_JbtnVolverMenuSolicitudesRegistradasActionPerformed
+
+    private void JbtnCancelarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCancelarSolicitudActionPerformed
+
+        try {
+            int filaSeleccionada = JtblSolicitudesRegistradas.getSelectedRow();
+
+            if (filaSeleccionada == -1) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Selecciona una solicitud de la tabla para cancelarla.",
+                        "Solicitud no seleccionada",
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            int filaModelo = JtblSolicitudesRegistradas
+                    .convertRowIndexToModel(filaSeleccionada);
+
+            String folio = String.valueOf(
+                    JtblSolicitudesRegistradas.getModel().getValueAt(filaModelo, 0)
+            );
+
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro de que deseas cancelar la solicitud " + folio + "?",
+                    "Confirmar cancelación",
+                    javax.swing.JOptionPane.YES_NO_OPTION,
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+
+            if (confirmacion != javax.swing.JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            negocio.SolicitudNegocio solicitudNegocio
+                    = new negocio.SolicitudNegocio();
+
+            PruebaEntidad prueba = solicitudNegocio.buscarPrueba(folio);
+
+            // Cancelar la solicitud seleccionada.
+            solicitudNegocio.cancelarPrueba(prueba.getId());
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "La solicitud " + folio + " fue cancelada correctamente.",
+                    "Solicitud cancelada",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE
+            );
+
+            cargarSolicitudes();
+
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No se pudo cancelar la solicitud: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+    }//GEN-LAST:event_JbtnCancelarSolicitudActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,6 +300,7 @@ public class SolicitudesRegistradas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JbtnCancelarSolicitud;
     private javax.swing.JButton JbtnNuevoEstudioSolicitudesRegistradas;
     private javax.swing.JButton JbtnVolverMenuSolicitudesRegistradas;
     private javax.swing.JLabel JlblLaboratorioSolicitudesRegistradas;

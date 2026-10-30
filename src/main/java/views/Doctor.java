@@ -49,13 +49,15 @@ public class Doctor extends javax.swing.JFrame {
         JpnlSuperiorDoctor.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloDoctor.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloDoctor.setText("Salud Total");
+        JlblTituloDoctor.setText("San José José");
 
         JlblLaboratorioDoctor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioDoctor.setText("Laboratorio Clinico");
 
         JpnlInferiorDoctor.setBackground(new java.awt.Color(173, 173, 173));
 
+        JbtnCancelarRegistroDoctor.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCancelarRegistroDoctor.setForeground(new java.awt.Color(255, 255, 255));
         JbtnCancelarRegistroDoctor.setText("Cancelar");
         JbtnCancelarRegistroDoctor.addActionListener(this::JbtnCancelarRegistroDoctorActionPerformed);
 
@@ -86,81 +88,83 @@ public class Doctor extends javax.swing.JFrame {
         JpnlInferiorDoctorLayout.setHorizontalGroup(
             JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(JlblSubtituloDoctor))
+                        .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JlblSubtituloDoctor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JpnlInferiorDoctorLayout.createSequentialGroup()
+                                .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JlblApellidoPaternoDoctor)
+                                    .addComponent(JlblNombreDoctor)
+                                    .addComponent(JtxtfApellidoPaternoDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(JtxtfNombreDoctor))
+                                .addGap(18, 18, 18)
+                                .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JcmbxSexoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JlblSexoDoctor)
+                                    .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(JlblApellidoMaternoDoctor)
+                                        .addComponent(JtxtfApellidoMaternoDoctor)))))
+                        .addContainerGap(13, Short.MAX_VALUE))
                     .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(JbtnRegistrarDoctor)
-                        .addGap(47, 47, 47)
-                        .addComponent(JbtnCancelarRegistroDoctor))
-                    .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JcmbxSexoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JlblSexoDoctor)
-                                .addComponent(JlblApellidoMaternoDoctor)
-                                .addComponent(JlblApellidoPaternoDoctor)
-                                .addComponent(JlblNombreDoctor)
-                                .addComponent(JtxtfApellidoPaternoDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                .addComponent(JtxtfNombreDoctor)
-                                .addComponent(JtxtfApellidoMaternoDoctor)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JbtnCancelarRegistroDoctor)
+                        .addGap(23, 23, 23))))
         );
         JpnlInferiorDoctorLayout.setVerticalGroup(
             JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(JlblSubtituloDoctor)
-                .addGap(21, 21, 21)
-                .addComponent(JlblNombreDoctor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtxtfNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(JlblApellidoPaternoDoctor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtxtfApellidoPaternoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(JlblApellidoMaternoDoctor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtxtfApellidoMaternoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(JlblSexoDoctor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JcmbxSexoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
+                        .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
+                                .addComponent(JlblNombreDoctor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JtxtfNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
+                                .addComponent(JlblSexoDoctor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JcmbxSexoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(JlblApellidoPaternoDoctor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JtxtfApellidoPaternoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JpnlInferiorDoctorLayout.createSequentialGroup()
+                        .addComponent(JlblApellidoMaternoDoctor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JtxtfApellidoMaternoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
                 .addGroup(JpnlInferiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbtnRegistrarDoctor)
                     .addComponent(JbtnCancelarRegistroDoctor))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout JpnlSuperiorDoctorLayout = new javax.swing.GroupLayout(JpnlSuperiorDoctor);
         JpnlSuperiorDoctor.setLayout(JpnlSuperiorDoctorLayout);
         JpnlSuperiorDoctorLayout.setHorizontalGroup(
             JpnlSuperiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorDoctorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioDoctor)
-                .addGap(54, 54, 54))
             .addGroup(JpnlSuperiorDoctorLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(JpnlSuperiorDoctorLayout.createSequentialGroup()
-                .addComponent(JpnlInferiorDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(JpnlSuperiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioDoctor)
+                    .addComponent(JlblTituloDoctor))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addComponent(JpnlInferiorDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         JpnlSuperiorDoctorLayout.setVerticalGroup(
             JpnlSuperiorDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorDoctorLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioDoctor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JlblLaboratorioDoctor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(JpnlInferiorDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -168,7 +172,7 @@ public class Doctor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpnlSuperiorDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(JpnlSuperiorDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

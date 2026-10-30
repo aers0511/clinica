@@ -9,47 +9,78 @@ package views;
  * @author eldp7
  */
 public class IngresarResultados extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(IngresarResultados.class.getName());
+    private boolean cargandoFolios = false;
 
     /**
      * Creates new form IngresarResultados
      */
     public IngresarResultados() {
         initComponents();
+
         JtxtfEdadIngresarResultados.setEditable(false);
         JcmbxClienteIngresarResultado.removeAllItems();
+
         try {
             negocio.SolicitudNegocio solicitud = new negocio.SolicitudNegocio();
+
             for (mapeos.ClienteEntidad cliente : solicitud.listarClientes()) {
                 JcmbxClienteIngresarResultado.addItem(cliente.getNombreCompleto());
             }
+
             JcmbxClienteIngresarResultado.setSelectedIndex(-1);
+
         } catch (RuntimeException e) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                "Error al cargar clientes: " + e.getMessage());
+                    "Error al cargar clientes: " + e.getMessage());
         }
+
+        cargarFolios();
+
         JtblParametrosIngresarResultados.setRowHeight(24);
+
         getRootPane().registerKeyboardAction(e -> {
             new MenuClinica().setVisible(true);
             dispose();
-        }, javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0),
-        javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
+        }, javax.swing.KeyStroke.getKeyStroke(
+                java.awt.event.KeyEvent.VK_ESCAPE, 0),
+                javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
-
     private mapeos.PruebaEntidad pruebaActual;
     private java.util.List<mapeos.ParametroEntidad> parametrosActuales = new java.util.ArrayList<>();
 
     public IngresarResultados(String folio) {
         this();
-        JtxtfPruebaIngresarResultados.setText(folio);
-        cargarPrueba();
+        JcmbxFoliosdePruebas.setSelectedItem(folio);
     }
 
-    private void cargarPrueba() {
+    private void cargarFolios() {
         try {
-            pruebaActual = new negocio.SolicitudNegocio().buscarPrueba(
-                JtxtfPruebaIngresarResultados.getText().trim());
+            cargandoFolios = true;
+
+            JcmbxFoliosdePruebas.removeAllItems();
+
+            negocio.SolicitudNegocio negocio = new negocio.SolicitudNegocio();
+
+            for (mapeos.PruebaEntidad prueba : negocio.listarTodasPruebas()) {
+                JcmbxFoliosdePruebas.addItem(prueba.getFolio());
+            }
+
+            JcmbxFoliosdePruebas.setSelectedIndex(-1);
+
+        } catch (RuntimeException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error al cargar folios: " + e.getMessage());
+        } finally {
+            cargandoFolios = false;
+        }
+    }
+
+    private void cargarPrueba(String folio) {
+        try {
+            pruebaActual = new negocio.SolicitudNegocio().buscarPrueba(folio);
+
             String nombreCliente = pruebaActual.getCliente().getNombreCompleto();
             boolean existe = false;
             for (int i = 0; i < JcmbxClienteIngresarResultado.getItemCount(); i++) {
@@ -63,15 +94,18 @@ public class IngresarResultados extends javax.swing.JFrame {
             }
             JcmbxClienteIngresarResultado.setSelectedItem(nombreCliente);
             int edad = java.time.Period.between(pruebaActual.getCliente().getFechaNacimiento(),
-                pruebaActual.getFechaHora().toLocalDate()).getYears();
+                    pruebaActual.getFechaHora().toLocalDate()).getYears();
             JtxtfEdadIngresarResultados.setText(String.valueOf(edad));
             parametrosActuales = new negocio.ResultadoNegocio().parametrosFaltantes(pruebaActual.getId());
             javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
-                new String[] {"Parametro", "Unidad", "Rango por edad", "Resultado", "Observacion"}, 0) {
-                @Override public boolean isCellEditable(int fila, int columna) { return columna >= 3; }
+                    new String[]{"Parametro", "Unidad", "Rango por edad", "Resultado", "Observacion"}, 0) {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    return columna >= 3;
+                }
             };
             for (mapeos.ParametroEntidad p : parametrosActuales) {
-                modelo.addRow(new Object[] {p.getNombre(), p.getUnidadMedida(),
+                modelo.addRow(new Object[]{p.getNombre(), p.getUnidadMedida(),
                     p.getRangoInicial() + " - " + p.getRangoFinal(), "", ""});
             }
             JtblParametrosIngresarResultados.setModel(modelo);
@@ -101,9 +135,9 @@ public class IngresarResultados extends javax.swing.JFrame {
         JlblPruebaIngresarResultados = new javax.swing.JLabel();
         JlblClienteIngresarResultados = new javax.swing.JLabel();
         JlblEdadIngresarResultados = new javax.swing.JLabel();
-        JtxtfPruebaIngresarResultados = new javax.swing.JTextField();
         JtxtfEdadIngresarResultados = new javax.swing.JTextField();
         JcmbxClienteIngresarResultado = new javax.swing.JComboBox<>();
+        JcmbxFoliosdePruebas = new javax.swing.JComboBox<>();
         JpnlInferiorDentroIngresarResultados = new javax.swing.JPanel();
         JscrlpIngresarResultados = new javax.swing.JScrollPane();
         JtblParametrosIngresarResultados = new javax.swing.JTable();
@@ -115,7 +149,7 @@ public class IngresarResultados extends javax.swing.JFrame {
         JpnlSuperiorIngresarResultados.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloIngresarResultados.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloIngresarResultados.setText("Salud Total");
+        JlblTituloIngresarResultados.setText("Clínica San José José");
 
         JlblLaboratorioIngresarResultados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioIngresarResultados.setText("Laboratorio Clinico");
@@ -126,21 +160,19 @@ public class IngresarResultados extends javax.swing.JFrame {
             JpnlSuperiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorIngresarResultadosLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(553, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorIngresarResultadosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioIngresarResultados)
-                .addGap(54, 54, 54))
+                .addGroup(JpnlSuperiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioIngresarResultados)
+                    .addComponent(JlblTituloIngresarResultados))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpnlSuperiorIngresarResultadosLayout.setVerticalGroup(
             JpnlSuperiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorIngresarResultadosLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioIngresarResultados)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorIngresarResultados.setBackground(new java.awt.Color(173, 173, 173));
@@ -150,39 +182,37 @@ public class IngresarResultados extends javax.swing.JFrame {
 
         JpnlSuperiorDentroIngresarResultados.setBackground(new java.awt.Color(255, 255, 255));
 
-        JlblPruebaIngresarResultados.setText("Prueba(Folio):");
+        JlblPruebaIngresarResultados.setText("Folio de la prueba");
 
         JlblClienteIngresarResultados.setText("Cliente:");
 
         JlblEdadIngresarResultados.setText("Edad:");
 
-        JtxtfPruebaIngresarResultados.addActionListener(this::JtxtfPruebaIngresarResultadosActionPerformed);
-
+        JtxtfEdadIngresarResultados.setEnabled(false);
         JtxtfEdadIngresarResultados.addActionListener(this::JtxtfEdadIngresarResultadosActionPerformed);
 
         JcmbxClienteIngresarResultado.addActionListener(this::JcmbxClienteIngresarResultadoActionPerformed);
+
+        JcmbxFoliosdePruebas.addActionListener(this::JcmbxFoliosdePruebasActionPerformed);
 
         javax.swing.GroupLayout JpnlSuperiorDentroIngresarResultadosLayout = new javax.swing.GroupLayout(JpnlSuperiorDentroIngresarResultados);
         JpnlSuperiorDentroIngresarResultados.setLayout(JpnlSuperiorDentroIngresarResultadosLayout);
         JpnlSuperiorDentroIngresarResultadosLayout.setHorizontalGroup(
             JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JlblPruebaIngresarResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JtxtfPruebaIngresarResultados))
+                .addGap(20, 20, 20)
                 .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(JlblClienteIngresarResultados))
-                    .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(JcmbxClienteIngresarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(JlblPruebaIngresarResultados)
+                    .addComponent(JcmbxFoliosdePruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JcmbxClienteIngresarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlblClienteIngresarResultados))
                 .addGap(29, 29, 29)
                 .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JlblEdadIngresarResultados)
                     .addComponent(JtxtfEdadIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         JpnlSuperiorDentroIngresarResultadosLayout.setVerticalGroup(
             JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,10 +224,10 @@ public class IngresarResultados extends javax.swing.JFrame {
                     .addComponent(JlblEdadIngresarResultados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(JpnlSuperiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JtxtfPruebaIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtxtfEdadIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JcmbxClienteIngresarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(JcmbxClienteIngresarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JcmbxFoliosdePruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         JtblParametrosIngresarResultados.setModel(new javax.swing.table.DefaultTableModel(
@@ -222,7 +252,7 @@ public class IngresarResultados extends javax.swing.JFrame {
             .addGroup(JpnlInferiorDentroIngresarResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JpnlInferiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JscrlpIngresarResultados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                    .addComponent(JscrlpIngresarResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                     .addGroup(JpnlInferiorDentroIngresarResultadosLayout.createSequentialGroup()
                         .addComponent(JlblParametrosIngresarResultados)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -231,12 +261,15 @@ public class IngresarResultados extends javax.swing.JFrame {
         JpnlInferiorDentroIngresarResultadosLayout.setVerticalGroup(
             JpnlInferiorDentroIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorDentroIngresarResultadosLayout.createSequentialGroup()
-                .addGap(0, 9, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(JlblParametrosIngresarResultados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JscrlpIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JscrlpIngresarResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
+        JbtnCancelarIngresarResultados.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCancelarIngresarResultados.setForeground(new java.awt.Color(255, 255, 255));
         JbtnCancelarIngresarResultados.setText("Cancelar");
         JbtnCancelarIngresarResultados.addActionListener(this::JbtnCancelarIngresarResultadosActionPerformed);
 
@@ -244,30 +277,33 @@ public class IngresarResultados extends javax.swing.JFrame {
         JpnlInferiorIngresarResultados.setLayout(JpnlInferiorIngresarResultadosLayout);
         JpnlInferiorIngresarResultadosLayout.setHorizontalGroup(
             JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
                 .addGroup(JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
-                        .addComponent(JbtnCargarDatosIngresarResultados)
-                        .addGap(36, 36, 36)
-                        .addComponent(JbtnCancelarIngresarResultados))
-                    .addGroup(JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JpnlSuperiorDentroIngresarResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JpnlInferiorDentroIngresarResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(170, 170, 170))
+                        .addGap(35, 35, 35)
+                        .addGroup(JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JpnlInferiorDentroIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
+                                .addComponent(JbtnCargarDatosIngresarResultados)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JbtnCancelarIngresarResultados))))
+                    .addGroup(JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(JpnlSuperiorDentroIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         JpnlInferiorIngresarResultadosLayout.setVerticalGroup(
             JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlInferiorIngresarResultadosLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(25, 25, 25)
                 .addComponent(JpnlSuperiorDentroIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(18, 18, 18)
                 .addComponent(JpnlInferiorDentroIngresarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbtnCargarDatosIngresarResultados)
-                    .addComponent(JbtnCancelarIngresarResultados))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(JpnlInferiorIngresarResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JbtnCancelarIngresarResultados)
+                    .addComponent(JbtnCargarDatosIngresarResultados))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,39 +324,97 @@ public class IngresarResultados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JtxtfPruebaIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfPruebaIngresarResultadosActionPerformed
-        cargarPrueba();
-    }//GEN-LAST:event_JtxtfPruebaIngresarResultadosActionPerformed
-
     private void JtxtfEdadIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfEdadIngresarResultadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtxtfEdadIngresarResultadosActionPerformed
 
     private void JbtnCargarDatosIngresarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosIngresarResultadosActionPerformed
+
         try {
-            if (pruebaActual == null) {
-                cargarPrueba();
-                if (pruebaActual == null) return;
+            String folio = (String) JcmbxFoliosdePruebas.getSelectedItem();
+
+            if (folio == null || folio.trim().isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Selecciona un folio de prueba."
+                );
+                return;
             }
-            if (JtblParametrosIngresarResultados.isEditing())
+
+            cargarPrueba(folio);
+
+            if (pruebaActual == null || parametrosActuales.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "No hay parámetros disponibles para registrar resultados."
+                );
+                return;
+            }
+
+            if (JtblParametrosIngresarResultados.isEditing()) {
                 JtblParametrosIngresarResultados.getCellEditor().stopCellEditing();
-            javax.swing.table.TableModel tabla = JtblParametrosIngresarResultados.getModel();
-            // Validar todos los valores antes de guardar.
-            java.util.List<java.math.BigDecimal> valores = new java.util.ArrayList<>();
-            for (int i = 0; i < parametrosActuales.size(); i++) {
-                String valor = String.valueOf(tabla.getValueAt(i, 3)).trim();
-                valores.add(new java.math.BigDecimal(valor));
             }
-            negocio.ResultadoNegocio negocio = new negocio.ResultadoNegocio();
+
+            javax.swing.table.TableModel tabla
+                    = JtblParametrosIngresarResultados.getModel();
+
+            java.util.List<java.math.BigDecimal> valores
+                    = new java.util.ArrayList<>();
+
+            for (int i = 0; i < parametrosActuales.size(); i++) {
+                Object dato = tabla.getValueAt(i, 3);
+
+                if (dato == null || dato.toString().trim().isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "Falta ingresar el resultado del parámetro: "
+                            + parametrosActuales.get(i).getNombre()
+                    );
+                    return;
+                }
+
+                try {
+                    valores.add(new java.math.BigDecimal(dato.toString().trim()));
+                } catch (NumberFormatException e) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "El valor ingresado no es válido en el parámetro: "
+                            + parametrosActuales.get(i).getNombre()
+                    );
+                    return;
+                }
+            }
+
+            // Registrar los resultados.
+            negocio.ResultadoNegocio resultadoNegocio
+                    = new negocio.ResultadoNegocio();
+
             for (int i = 0; i < parametrosActuales.size(); i++) {
                 Object nota = tabla.getValueAt(i, 4);
-                negocio.registrarResultado(pruebaActual.getId(), parametrosActuales.get(i).getId(),
-                    valores.get(i), nota == null ? "" : String.valueOf(nota));
+
+                resultadoNegocio.registrarResultado(
+                        pruebaActual.getId(),
+                        parametrosActuales.get(i).getId(),
+                        valores.get(i),
+                        nota == null ? "" : nota.toString().trim()
+                );
             }
-            javax.swing.JOptionPane.showMessageDialog(this, "Resultados guardados");
-            cargarPrueba();
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Resultados guardados correctamente."
+            );
+
+            // Actualizar la información de la prueba.
+            cargarPrueba(folio);
+
         } catch (RuntimeException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al guardar resultados: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Error al guardar los resultados: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_JbtnCargarDatosIngresarResultadosActionPerformed
 
@@ -332,6 +426,16 @@ public class IngresarResultados extends javax.swing.JFrame {
         new MenuClinica().setVisible(true);
         dispose();
     }//GEN-LAST:event_JbtnCancelarIngresarResultadosActionPerformed
+
+    private void JcmbxFoliosdePruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbxFoliosdePruebasActionPerformed
+        String folio = (String) JcmbxFoliosdePruebas.getSelectedItem();
+
+        if (folio == null) {
+            return;
+        }
+
+        cargarPrueba(folio);
+    }//GEN-LAST:event_JcmbxFoliosdePruebasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,6 +466,7 @@ public class IngresarResultados extends javax.swing.JFrame {
     private javax.swing.JButton JbtnCancelarIngresarResultados;
     private javax.swing.JButton JbtnCargarDatosIngresarResultados;
     private javax.swing.JComboBox<String> JcmbxClienteIngresarResultado;
+    private javax.swing.JComboBox<String> JcmbxFoliosdePruebas;
     private javax.swing.JLabel JlblClienteIngresarResultados;
     private javax.swing.JLabel JlblEdadIngresarResultados;
     private javax.swing.JLabel JlblLaboratorioIngresarResultados;
@@ -375,6 +480,5 @@ public class IngresarResultados extends javax.swing.JFrame {
     private javax.swing.JScrollPane JscrlpIngresarResultados;
     private javax.swing.JTable JtblParametrosIngresarResultados;
     private javax.swing.JTextField JtxtfEdadIngresarResultados;
-    private javax.swing.JTextField JtxtfPruebaIngresarResultados;
     // End of variables declaration//GEN-END:variables
 }

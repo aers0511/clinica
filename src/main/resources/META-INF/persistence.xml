@@ -16,7 +16,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/laboratorio?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="Daniel190"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
     </properties>
   </persistence-unit>
 </persistence>

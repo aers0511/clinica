@@ -23,8 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="JpnlTituloSolicitudesRegistradas" pref="912" max="32767" attributes="0"/>
           <Component id="JpnlInferiorSolicitudesRegistradas" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="JpnlTituloSolicitudesRegistradas" min="-2" pref="834" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -53,13 +56,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="JlblTituloSolicitudesRegistradas" min="-2" pref="344" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JlblLaboratorioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblTituloSolicitudesRegistradas" min="-2" pref="365" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="427" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -68,9 +69,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="JlblTituloSolicitudesRegistradas" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="JlblLaboratorioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,7 +82,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="Cl&#xed;nica San Jos&#xe9; Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioSolicitudesRegistradas">
@@ -104,17 +105,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
-                  <Component id="JscrlpTablaSolicitudesRegistradas" min="-2" pref="784" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                  <Component id="JbtnNuevoEstudioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                  <Component id="JbtnVolverMenuSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="JbtnNuevoEstudioSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="JbtnVolverMenuSolicitudesRegistradas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="JbtnCancelarSolicitud" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="JscrlpTablaSolicitudesRegistradas" min="-2" pref="784" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,12 +126,13 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="JscrlpTablaSolicitudesRegistradas" min="-2" pref="329" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JbtnNuevoEstudioSolicitudesRegistradas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JbtnVolverMenuSolicitudesRegistradas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JbtnCancelarSolicitud" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -156,7 +160,10 @@
         </Container>
         <Component class="javax.swing.JButton" name="JbtnNuevoEstudioSolicitudesRegistradas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nuevo Estudio"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="ff" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nueva Solicitud"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnNuevoEstudioSolicitudesRegistradasActionPerformed"/>
@@ -164,10 +171,24 @@
         </Component>
         <Component class="javax.swing.JButton" name="JbtnVolverMenuSolicitudesRegistradas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Volver al menu"/>
+            <Property name="text" type="java.lang.String" value="Volver al Men&#xfa;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuSolicitudesRegistradasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="JbtnCancelarSolicitud">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cancelar Solicitud"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCancelarSolicitudActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

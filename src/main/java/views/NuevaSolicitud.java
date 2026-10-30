@@ -9,7 +9,7 @@ package views;
  * @author eldp7
  */
 public class NuevaSolicitud extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NuevaSolicitud.class.getName());
 
     /**
@@ -21,7 +21,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JtxtfFechaHoraNuevaSolicitud.setEditable(false);
         JtxtfFechaHoraNuevaSolicitud.setText(java.time.LocalDateTime.now().toString());
         cargarDatos();
-        JchkbxEstudiosSolicitarNuevaSolicitud.setText("Seleccionar estudios");
+        
     }
 
     private java.util.List<mapeos.ClienteEntidad> clientes = new java.util.ArrayList<>();
@@ -37,9 +37,13 @@ public class NuevaSolicitud extends javax.swing.JFrame {
             estudios = new negocio.CatalogoNegocio().listarEstudios();
             JcmbxClienteNuevaSolicitud.removeAllItems();
             JcmbxDoctorNuevaSolicitud.removeAllItems();
-            for (mapeos.ClienteEntidad c : clientes) JcmbxClienteNuevaSolicitud.addItem(c.getNombreCompleto());
+            for (mapeos.ClienteEntidad c : clientes) {
+                JcmbxClienteNuevaSolicitud.addItem(c.getNombreCompleto());
+            }
             JcmbxDoctorNuevaSolicitud.addItem("A quien corresponda");
-            for (mapeos.DoctorEntidad d : doctores) JcmbxDoctorNuevaSolicitud.addItem(d.getNombreCompleto());
+            for (mapeos.DoctorEntidad d : doctores) {
+                JcmbxDoctorNuevaSolicitud.addItem(d.getNombreCompleto());
+            }
         } catch (RuntimeException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
         }
@@ -66,14 +70,15 @@ public class NuevaSolicitud extends javax.swing.JFrame {
             if (respuesta == javax.swing.JOptionPane.OK_OPTION) {
                 estudiosSeleccionados.clear();
                 for (int i = 0; i < estudios.size(); i++) {
-                    if (opciones.get(i).isSelected()) estudiosSeleccionados.add(estudios.get(i).getId());
+                    if (opciones.get(i).isSelected()) {
+                        estudiosSeleccionados.add(estudios.get(i).getId());
+                    }
                 }
             }
         } catch (RuntimeException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error al elegir estudios: " + e.getMessage());
         }
-        JchkbxEstudiosSolicitarNuevaSolicitud.setText("Estudios elegidos: " + estudiosSeleccionados.size());
-        JchkbxEstudiosSolicitarNuevaSolicitud.setSelected(!estudiosSeleccionados.isEmpty());
+        txtEstudiosSolicitarNuevaSolicitud.setText("Estudios elegidos: " + estudiosSeleccionados.size());
     }
 
     /**
@@ -89,8 +94,6 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JlblTituloNuevoEstudio = new javax.swing.JLabel();
         JlblLaboratorioNuevoEstudio = new javax.swing.JLabel();
         JpnlInferiorNuevoSolicitud = new javax.swing.JPanel();
-        JbtnCargarDatosNuevaSolicitud = new javax.swing.JButton();
-        JbtnVolverMenuNuevaEstudio = new javax.swing.JButton();
         JpnlRequisitosNuevaSolicitud = new javax.swing.JPanel();
         JcmbxDoctorNuevaSolicitud = new javax.swing.JComboBox<>();
         JtxtfFechaHoraNuevaSolicitud = new javax.swing.JTextField();
@@ -101,15 +104,18 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JlblSubtituloNuevaSolicitud = new javax.swing.JLabel();
         JlblDoctorNuevaSolicitud = new javax.swing.JLabel();
         JcmbxClienteNuevaSolicitud = new javax.swing.JComboBox<>();
-        JchkbxEstudiosSolicitarNuevaSolicitud = new javax.swing.JCheckBox();
         JlblEstudioSolicitarNuevaSolicitud = new javax.swing.JLabel();
+        JbtnCargarDatosNuevaSolicitud = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        txtEstudiosSolicitarNuevaSolicitud = new javax.swing.JLabel();
+        JbtnVolverMenuNuevaEstudio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JpnlSuperiorNuevoSolicitud.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloNuevoEstudio.setText("Salud Total");
+        JlblTituloNuevoEstudio.setText("Clínica San José José");
 
         JlblLaboratorioNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioNuevoEstudio.setText("Laboratorio Clinico");
@@ -120,36 +126,30 @@ public class NuevaSolicitud extends javax.swing.JFrame {
             JpnlSuperiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorNuevoSolicitudLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JpnlSuperiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioNuevoEstudio)
+                    .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorNuevoSolicitudLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioNuevoEstudio)
-                .addGap(54, 54, 54))
         );
         JpnlSuperiorNuevoSolicitudLayout.setVerticalGroup(
             JpnlSuperiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorNuevoSolicitudLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioNuevoEstudio)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorNuevoSolicitud.setBackground(new java.awt.Color(173, 173, 173));
 
-        JbtnCargarDatosNuevaSolicitud.setText("Cargar Datos");
-        JbtnCargarDatosNuevaSolicitud.addActionListener(this::JbtnCargarDatosNuevaSolicitudActionPerformed);
-
-        JbtnVolverMenuNuevaEstudio.setText("Volver al menu");
-        JbtnVolverMenuNuevaEstudio.addActionListener(this::JbtnVolverMenuNuevaEstudioActionPerformed);
-
         JcmbxDoctorNuevaSolicitud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JcmbxDoctorNuevaSolicitud.addActionListener(this::JcmbxDoctorNuevaSolicitudActionPerformed);
 
+        JtxtfFechaHoraNuevaSolicitud.setEnabled(false);
         JtxtfFechaHoraNuevaSolicitud.addActionListener(this::JtxtfFechaHoraNuevaSolicitudActionPerformed);
 
+        JtxtfFolioNuevaSolicitud.setEnabled(false);
         JtxtfFolioNuevaSolicitud.addActionListener(this::JtxtfFolioNuevaSolicitudActionPerformed);
 
         JlblFolioNuevaSolicitud.setText("Folio:");
@@ -165,68 +165,86 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JcmbxClienteNuevaSolicitud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JcmbxClienteNuevaSolicitud.addActionListener(this::JcmbxClienteNuevaSolicitudActionPerformed);
 
-        JchkbxEstudiosSolicitarNuevaSolicitud.setText("Orina");
-        JchkbxEstudiosSolicitarNuevaSolicitud.addActionListener(this::JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed);
-
         JlblEstudioSolicitarNuevaSolicitud.setText("Estudios a solcitar:");
+
+        JbtnCargarDatosNuevaSolicitud.setBackground(new java.awt.Color(51, 255, 51));
+        JbtnCargarDatosNuevaSolicitud.setText("Crear solicitud");
+        JbtnCargarDatosNuevaSolicitud.addActionListener(this::JbtnCargarDatosNuevaSolicitudActionPerformed);
+
+        jButton1.setText("Seleccionar");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        txtEstudiosSolicitarNuevaSolicitud.setText("Estudios..");
+
+        JbtnVolverMenuNuevaEstudio.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnVolverMenuNuevaEstudio.setForeground(new java.awt.Color(255, 255, 255));
+        JbtnVolverMenuNuevaEstudio.setText("Cancelar");
+        JbtnVolverMenuNuevaEstudio.addActionListener(this::JbtnVolverMenuNuevaEstudioActionPerformed);
 
         javax.swing.GroupLayout JpnlRequisitosNuevaSolicitudLayout = new javax.swing.GroupLayout(JpnlRequisitosNuevaSolicitud);
         JpnlRequisitosNuevaSolicitud.setLayout(JpnlRequisitosNuevaSolicitudLayout);
         JpnlRequisitosNuevaSolicitudLayout.setHorizontalGroup(
             JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblSubtituloNuevaSolicitud)
                     .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(JlblSubtituloNuevaSolicitud))
-                    .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
                         .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JlblDoctorNuevaSolicitud)
+                            .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JlblFolioNuevaSolicitud)
+                                .addComponent(JlblFechaHoraNuevaSolicitud)
+                                .addComponent(JcmbxDoctorNuevaSolicitud, 0, 319, Short.MAX_VALUE)
+                                .addComponent(JlblClienteNuevaSolicitud)
+                                .addComponent(JtxtfFechaHoraNuevaSolicitud)
+                                .addComponent(JtxtfFolioNuevaSolicitud)
+                                .addComponent(JcmbxClienteNuevaSolicitud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(JlblDoctorNuevaSolicitud))
+                        .addGap(57, 57, 57)
+                        .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JlblEstudioSolicitarNuevaSolicitud)
+                            .addComponent(JbtnCargarDatosNuevaSolicitud)
                             .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
-                                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JlblFolioNuevaSolicitud)
-                                    .addComponent(JlblFechaHoraNuevaSolicitud)
-                                    .addComponent(JcmbxDoctorNuevaSolicitud, 0, 319, Short.MAX_VALUE)
-                                    .addComponent(JlblClienteNuevaSolicitud)
-                                    .addComponent(JtxtfFechaHoraNuevaSolicitud)
-                                    .addComponent(JtxtfFolioNuevaSolicitud)
-                                    .addComponent(JcmbxClienteNuevaSolicitud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(135, 135, 135)
-                                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JchkbxEstudiosSolicitarNuevaSolicitud)
-                                    .addComponent(JlblEstudioSolicitarNuevaSolicitud))))))
-                .addContainerGap(196, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtEstudiosSolicitarNuevaSolicitud))
+                            .addComponent(JbtnVolverMenuNuevaEstudio))))
+                .addGap(46, 46, 46))
         );
         JpnlRequisitosNuevaSolicitudLayout.setVerticalGroup(
             JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(26, 26, 26)
                 .addComponent(JlblSubtituloNuevaSolicitud)
-                .addGap(18, 18, 18)
-                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
                         .addComponent(JlblFolioNuevaSolicitud)
                         .addGap(0, 0, 0)
-                        .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JtxtfFolioNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JchkbxEstudiosSolicitarNuevaSolicitud))
-                        .addGap(12, 12, 12)
-                        .addComponent(JlblFechaHoraNuevaSolicitud)
-                        .addGap(0, 0, 0)
-                        .addComponent(JtxtfFechaHoraNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(JlblClienteNuevaSolicitud)
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(JcmbxClienteNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(JlblDoctorNuevaSolicitud)
-                        .addGap(0, 0, 0)
-                        .addComponent(JcmbxDoctorNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addComponent(JtxtfFolioNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JpnlRequisitosNuevaSolicitudLayout.createSequentialGroup()
                         .addComponent(JlblEstudioSolicitarNuevaSolicitud)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(txtEstudiosSolicitarNuevaSolicitud))))
+                .addGap(10, 10, 10)
+                .addComponent(JlblFechaHoraNuevaSolicitud)
+                .addGap(0, 0, 0)
+                .addComponent(JtxtfFechaHoraNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(JlblClienteNuevaSolicitud)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JcmbxClienteNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbtnVolverMenuNuevaEstudio))
+                .addGap(11, 11, 11)
+                .addComponent(JlblDoctorNuevaSolicitud)
+                .addGap(0, 0, 0)
+                .addGroup(JpnlRequisitosNuevaSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JcmbxDoctorNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbtnCargarDatosNuevaSolicitud))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout JpnlInferiorNuevoSolicitudLayout = new javax.swing.GroupLayout(JpnlInferiorNuevoSolicitud);
@@ -234,37 +252,26 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         JpnlInferiorNuevoSolicitudLayout.setHorizontalGroup(
             JpnlInferiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorNuevoSolicitudLayout.createSequentialGroup()
-                .addGroup(JpnlInferiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpnlInferiorNuevoSolicitudLayout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(JbtnCargarDatosNuevaSolicitud)
-                        .addGap(129, 129, 129)
-                        .addComponent(JbtnVolverMenuNuevaEstudio))
-                    .addGroup(JpnlInferiorNuevoSolicitudLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(JpnlRequisitosNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(JpnlRequisitosNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         JpnlInferiorNuevoSolicitudLayout.setVerticalGroup(
             JpnlInferiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorNuevoSolicitudLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(17, 17, 17)
                 .addComponent(JpnlRequisitosNuevaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(JpnlInferiorNuevoSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbtnCargarDatosNuevaSolicitud)
-                    .addComponent(JbtnVolverMenuNuevaEstudio))
-                .addGap(33, 33, 33))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JpnlInferiorNuevoSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(JpnlSuperiorNuevoSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(JpnlInferiorNuevoSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,13 +286,14 @@ public class NuevaSolicitud extends javax.swing.JFrame {
 
     private void JbtnCargarDatosNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCargarDatosNuevaSolicitudActionPerformed
         try {
-            if (JcmbxClienteNuevaSolicitud.getSelectedIndex() < 0)
+            if (JcmbxClienteNuevaSolicitud.getSelectedIndex() < 0) {
                 throw new IllegalArgumentException("Seleccione un cliente");
+            }
             mapeos.ClienteEntidad c = clientes.get(JcmbxClienteNuevaSolicitud.getSelectedIndex());
             int indiceDoctor = JcmbxDoctorNuevaSolicitud.getSelectedIndex();
             Integer doctor = indiceDoctor < 1 ? null : doctores.get(indiceDoctor - 1).getId();
             mapeos.PruebaEntidad prueba = new negocio.SolicitudNegocio().registrarPrueba(
-                c.getId(), doctor, estudiosSeleccionados);
+                    c.getId(), doctor, estudiosSeleccionados);
             JtxtfFolioNuevaSolicitud.setText(prueba.getFolio());
             JtxtfFechaHoraNuevaSolicitud.setText(prueba.getFechaHora().toString());
             javax.swing.JOptionPane.showMessageDialog(this, "Solicitud guardada. Folio: " + prueba.getFolio());
@@ -299,10 +307,6 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     private void JtxtfFolioNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfFolioNuevaSolicitudActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtxtfFolioNuevaSolicitudActionPerformed
-
-    private void JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed
-        seleccionarEstudios();
-    }//GEN-LAST:event_JchkbxEstudiosSolicitarNuevaSolicitudActionPerformed
 
     private void JtxtfFechaHoraNuevaSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtfFechaHoraNuevaSolicitudActionPerformed
         // TODO add your handling code here:
@@ -320,6 +324,10 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         new SolicitudesRegistradas().setVisible(true);
         dispose();
     }//GEN-LAST:event_JbtnVolverMenuNuevaEstudioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        seleccionarEstudios();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,7 +357,6 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtnCargarDatosNuevaSolicitud;
     private javax.swing.JButton JbtnVolverMenuNuevaEstudio;
-    private javax.swing.JCheckBox JchkbxEstudiosSolicitarNuevaSolicitud;
     private javax.swing.JComboBox<String> JcmbxClienteNuevaSolicitud;
     private javax.swing.JComboBox<String> JcmbxDoctorNuevaSolicitud;
     private javax.swing.JLabel JlblClienteNuevaSolicitud;
@@ -365,5 +372,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     private javax.swing.JPanel JpnlSuperiorNuevoSolicitud;
     private javax.swing.JTextField JtxtfFechaHoraNuevaSolicitud;
     private javax.swing.JTextField JtxtfFolioNuevaSolicitud;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel txtEstudiosSolicitarNuevaSolicitud;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,7 +63,7 @@ public class NuevoEstudio extends javax.swing.JFrame {
         JpnlSuperiorNuevoEstudio.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloNuevoEstudio.setText("Salud Total");
+        JlblTituloNuevoEstudio.setText("Clínica San José");
 
         JlblLaboratorioNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioNuevoEstudio.setText("Laboratorio Clinico");
@@ -74,29 +74,30 @@ public class NuevoEstudio extends javax.swing.JFrame {
             JpnlSuperiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorNuevoEstudioLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(542, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorNuevoEstudioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioNuevoEstudio)
-                .addGap(54, 54, 54))
+                .addGroup(JpnlSuperiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioNuevoEstudio)
+                    .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpnlSuperiorNuevoEstudioLayout.setVerticalGroup(
             JpnlSuperiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorNuevoEstudioLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioNuevoEstudio)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorNuevoEstudio.setBackground(new java.awt.Color(173, 173, 173));
 
-        JbtnCargarDatosNuevoEstudio.setText("Cargar Datos");
+        JbtnCargarDatosNuevoEstudio.setBackground(new java.awt.Color(51, 255, 51));
+        JbtnCargarDatosNuevoEstudio.setText("Crear Estudio");
         JbtnCargarDatosNuevoEstudio.addActionListener(this::JbtnCargarDatosNuevoEstudioActionPerformed);
 
-        JbtnVolverMenuNuevoEstudio.setText("Volver al menu");
+        JbtnVolverMenuNuevoEstudio.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnVolverMenuNuevoEstudio.setForeground(new java.awt.Color(255, 255, 255));
+        JbtnVolverMenuNuevoEstudio.setText("Cancelar");
         JbtnVolverMenuNuevoEstudio.addActionListener(this::JbtnVolverMenuNuevoEstudioActionPerformed);
 
         JcmbxTipoMuestraNuevoEstudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -119,27 +120,24 @@ public class NuevoEstudio extends javax.swing.JFrame {
         JpnlRequisitosNuevoEstudioLayout.setHorizontalGroup(
             JpnlRequisitosNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlRequisitosNuevoEstudioLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(JpnlRequisitosNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpnlRequisitosNuevoEstudioLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addGroup(JpnlRequisitosNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JlblTipoMuestraNuevoEstudio)
-                            .addComponent(JlblNombreEstudioNuevoEstudio)
-                            .addComponent(JcmbxTipoMuestraNuevoEstudio, 0, 319, Short.MAX_VALUE)
-                            .addComponent(JlblNotaDescriptivaNuevoEstudio)
-                            .addComponent(JtxtfNombreEstudioNuevoEstudio)
-                            .addComponent(JtxtfNotaDescriptivaNuevoEstudio)))
-                    .addGroup(JpnlRequisitosNuevoEstudioLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(JlblSubtituloNuevoEstudio)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(JlblSubtituloNuevoEstudio)
+                    .addGroup(JpnlRequisitosNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(JlblTipoMuestraNuevoEstudio)
+                        .addComponent(JlblNombreEstudioNuevoEstudio)
+                        .addComponent(JcmbxTipoMuestraNuevoEstudio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JlblNotaDescriptivaNuevoEstudio)
+                        .addComponent(JtxtfNombreEstudioNuevoEstudio)
+                        .addComponent(JtxtfNotaDescriptivaNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         JpnlRequisitosNuevoEstudioLayout.setVerticalGroup(
             JpnlRequisitosNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlRequisitosNuevoEstudioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(22, 22, 22)
                 .addComponent(JlblSubtituloNuevoEstudio)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JlblTipoMuestraNuevoEstudio)
                 .addGap(0, 0, 0)
                 .addComponent(JcmbxTipoMuestraNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,40 +157,42 @@ public class NuevoEstudio extends javax.swing.JFrame {
         JpnlInferiorNuevoEstudioLayout.setHorizontalGroup(
             JpnlInferiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorNuevoEstudioLayout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addGap(20, 20, 20)
                 .addGroup(JpnlInferiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JpnlRequisitosNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JpnlInferiorNuevoEstudioLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(JbtnCargarDatosNuevoEstudio)
-                        .addGap(129, 129, 129)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JbtnVolverMenuNuevoEstudio)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         JpnlInferiorNuevoEstudioLayout.setVerticalGroup(
             JpnlInferiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlInferiorNuevoEstudioLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(17, 17, 17)
                 .addComponent(JpnlRequisitosNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JpnlInferiorNuevoEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JbtnCargarDatosNuevoEstudio)
                     .addComponent(JbtnVolverMenuNuevoEstudio))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpnlSuperiorNuevoEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JpnlInferiorNuevoEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JpnlSuperiorNuevoEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JpnlSuperiorNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JpnlInferiorNuevoEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(JpnlInferiorNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

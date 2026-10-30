@@ -23,8 +23,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="JpnlSuperiorNuevoEstudio" max="32767" attributes="0"/>
           <Component id="JpnlInferiorNuevoEstudio" max="32767" attributes="0"/>
+          <Component id="JpnlSuperiorNuevoEstudio" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -32,7 +32,8 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="JpnlSuperiorNuevoEstudio" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="JpnlInferiorNuevoEstudio" max="32767" attributes="0"/>
+              <Component id="JpnlInferiorNuevoEstudio" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,13 +51,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="JlblTituloNuevoEstudio" min="-2" pref="344" max="-2" attributes="0"/>
-                  <EmptySpace pref="542" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblTituloNuevoEstudio" min="-2" pref="344" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -65,9 +64,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="JlblTituloNuevoEstudio" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="JlblLaboratorioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,7 +77,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salud Total"/>
+            <Property name="text" type="java.lang.String" value="Cl&#xed;nica San Jos&#xe9;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JlblLaboratorioNuevoEstudio">
@@ -102,30 +101,31 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JpnlRequisitosNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           <Component id="JbtnCargarDatosNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="JbtnVolverMenuNuevoEstudio" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="JpnlRequisitosNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JbtnCargarDatosNuevoEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JbtnVolverMenuNuevoEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,7 +133,10 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="JbtnCargarDatosNuevoEstudio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cargar Datos"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="ff" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Crear Estudio"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnCargarDatosNuevoEstudioActionPerformed"/>
@@ -141,7 +144,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="JbtnVolverMenuNuevoEstudio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Volver al menu"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnVolverMenuNuevoEstudioActionPerformed"/>
@@ -152,34 +161,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="JlblTipoMuestraNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JlblNombreEstudioNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JcmbxTipoMuestraNuevoEstudio" pref="319" max="32767" attributes="0"/>
-                                  <Component id="JlblNotaDescriptivaNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JtxtfNombreEstudioNuevoEstudio" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="JtxtfNotaDescriptivaNuevoEstudio" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="JlblSubtituloNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblSubtituloNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="JlblTipoMuestraNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                              <Component id="JlblNombreEstudioNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                              <Component id="JcmbxTipoMuestraNuevoEstudio" max="32767" attributes="0"/>
+                              <Component id="JlblNotaDescriptivaNuevoEstudio" min="-2" max="-2" attributes="0"/>
+                              <Component id="JtxtfNombreEstudioNuevoEstudio" alignment="0" max="32767" attributes="0"/>
+                              <Component id="JtxtfNotaDescriptivaNuevoEstudio" alignment="0" min="-2" pref="319" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="JlblSubtituloNuevoEstudio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="JlblTipoMuestraNuevoEstudio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="JcmbxTipoMuestraNuevoEstudio" min="-2" max="-2" attributes="0"/>

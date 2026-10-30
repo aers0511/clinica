@@ -108,7 +108,7 @@ public class ParametrosEstudio extends javax.swing.JFrame {
         JpnlSuperiorParametroEstudio.setBackground(new java.awt.Color(255, 242, 242));
 
         JlblTituloNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        JlblTituloNuevoEstudio.setText("Salud Total");
+        JlblTituloNuevoEstudio.setText("Clínica San José José");
 
         JlblLaboratorioNuevoEstudio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JlblLaboratorioNuevoEstudio.setText("Laboratorio Clinico");
@@ -119,21 +119,19 @@ public class ParametrosEstudio extends javax.swing.JFrame {
             JpnlSuperiorParametroEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorParametroEstudioLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JpnlSuperiorParametroEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JlblLaboratorioNuevoEstudio)
+                    .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpnlSuperiorParametroEstudioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JlblLaboratorioNuevoEstudio)
-                .addGap(54, 54, 54))
         );
         JpnlSuperiorParametroEstudioLayout.setVerticalGroup(
             JpnlSuperiorParametroEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlSuperiorParametroEstudioLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(JlblTituloNuevoEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlblLaboratorioNuevoEstudio)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         JpnlInferiorParametroEstudio.setBackground(new java.awt.Color(175, 175, 175));
@@ -151,6 +149,8 @@ public class ParametrosEstudio extends javax.swing.JFrame {
         JbtnGuardarEstudioParametroEstudio.setText("Guardar Estudio");
         JbtnGuardarEstudioParametroEstudio.addActionListener(this::JbtnGuardarEstudioParametroEstudioActionPerformed);
 
+        JbtnCancelarEstudioParametroEstudio.setBackground(new java.awt.Color(255, 51, 51));
+        JbtnCancelarEstudioParametroEstudio.setForeground(new java.awt.Color(255, 255, 255));
         JbtnCancelarEstudioParametroEstudio.setText("Cancelar");
         JbtnCancelarEstudioParametroEstudio.addActionListener(this::JbtnCancelarEstudioParametroEstudioActionPerformed);
 
@@ -173,11 +173,11 @@ public class ParametrosEstudio extends javax.swing.JFrame {
                             .addGroup(JpnlIzquieroParametroEstudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(JlblMuestraEstudioParametroEstudio)
                                 .addComponent(JtxtfMuestraParametroEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(JpnlIzquieroParametroEstudioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JbtnGuardarEstudioParametroEstudio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(JbtnCancelarEstudioParametroEstudio)
                 .addGap(18, 18, 18))
         );
@@ -207,7 +207,7 @@ public class ParametrosEstudio extends javax.swing.JFrame {
 
         JtxtfNombreParametroParametroEstudio.addActionListener(this::JtxtfNombreParametroParametroEstudioActionPerformed);
 
-        JlblOrdenReporteParametroEstudio.setText("Orden  en Reporte:");
+        JlblOrdenReporteParametroEstudio.setText("Orden en Reporte:");
 
         JtxtfOrdenReporteParametroEstudio.addActionListener(this::JtxtfOrdenReporteParametroEstudioActionPerformed);
 
@@ -235,6 +235,7 @@ public class ParametrosEstudio extends javax.swing.JFrame {
 
         JtxtfEdadFinalParametroEstudio.addActionListener(this::JtxtfEdadFinalParametroEstudioActionPerformed);
 
+        JbtnAgregarParametrosParametroEstudio.setBackground(new java.awt.Color(51, 255, 51));
         JbtnAgregarParametrosParametroEstudio.setText("Agregar Parametros");
         JbtnAgregarParametrosParametroEstudio.addActionListener(this::JbtnAgregarParametrosParametroEstudioActionPerformed);
 
