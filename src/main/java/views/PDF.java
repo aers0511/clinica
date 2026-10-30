@@ -166,6 +166,7 @@ public class PDF extends javax.swing.JFrame {
         JbtnBuscarPDF = new javax.swing.JButton();
         JlblGenerarPDFPDF = new javax.swing.JButton();
         JbtnImprimirPDF = new javax.swing.JButton();
+        JbtnCancelarPDF = new javax.swing.JButton();
         JpnlVisualizacionPDF = new javax.swing.JPanel();
         JscrlpVisualizacionPDF = new javax.swing.JScrollPane();
         JlblVisualizacionPDF = new javax.swing.JLabel();
@@ -215,25 +216,32 @@ public class PDF extends javax.swing.JFrame {
 
         JbtnImprimirPDF.setText("Imprimir");
 
+        JbtnCancelarPDF.setText("Cancelar");
+        JbtnCancelarPDF.addActionListener(this::JbtnCancelarPDFActionPerformed);
+
         javax.swing.GroupLayout JpnlIzquieroPDFLayout = new javax.swing.GroupLayout(JpnlIzquieroPDF);
         JpnlIzquieroPDF.setLayout(JpnlIzquieroPDFLayout);
         JpnlIzquieroPDFLayout.setHorizontalGroup(
             JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
-                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JpnlIzquieroPDFLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JbtnBuscarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JlblFolioPDF)
-                                .addComponent(JlblReportePDF)
-                                .addComponent(JtxtfFolioPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JpnlIzquieroPDFLayout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(JbtnBuscarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JlblFolioPDF)
+                                    .addComponent(JlblReportePDF)
+                                    .addComponent(JtxtfFolioPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JlblGenerarPDFPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                .addComponent(JbtnImprimirPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(JpnlIzquieroPDFLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(JpnlIzquieroPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JlblGenerarPDFPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                            .addComponent(JbtnImprimirPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(62, 62, 62)
+                        .addComponent(JbtnCancelarPDF)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         JpnlIzquieroPDFLayout.setVerticalGroup(
@@ -251,7 +259,9 @@ public class PDF extends javax.swing.JFrame {
                 .addComponent(JlblGenerarPDFPDF)
                 .addGap(28, 28, 28)
                 .addComponent(JbtnImprimirPDF)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(JbtnCancelarPDF)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         JscrlpVisualizacionPDF.setViewportView(JlblVisualizacionPDF);
@@ -306,6 +316,11 @@ public class PDF extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JbtnCancelarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnCancelarPDFActionPerformed
+        new MenuClinica().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtnCancelarPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,6 +348,7 @@ public class PDF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtnBuscarPDF;
+    private javax.swing.JButton JbtnCancelarPDF;
     private javax.swing.JButton JbtnImprimirPDF;
     private javax.swing.JLabel JlblFolioPDF;
     private javax.swing.JButton JlblGenerarPDFPDF;
